@@ -4,7 +4,7 @@ import { providers } from "@/data/providers";
 
 export default function GameProvidersSection() {
   return (
-    <section className="w-[1136px] flex flex-col gap-5">
+    <section className="w-full flex flex-col gap-5">
       {/* Header */}
 
       <div className="flex items-center justify-between h-[30px]">

@@ -1,6 +1,7 @@
+"use client";
+import { useRef } from "react";
 import { GamesRowProps } from "@/types/games/GamesRowProps";
 import { SectionHeaderProps } from "@/types/games/SectionHeaderProps";
-
 import GamesRow from "./GamesRow";
 import SectionHeader from "./SectionHeader";
 
@@ -12,11 +13,17 @@ export default function GameSection({
   count,
   games,
 }: GameSectionProp) {
-  return (
-    <section className="w-[1300px] flex flex-col gap-[20px]">
-      <SectionHeader icon={icon} title={title} count={count} />
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-      <GamesRow games={games} />
+  return (
+    <section className="w-full flex flex-col gap-[20px]">
+      <SectionHeader
+        icon={icon}
+        title={title}
+        count={count}
+        scrollRef={scrollRef}
+      />
+      <GamesRow games={games} scrollRef={scrollRef} />
     </section>
   );
 }

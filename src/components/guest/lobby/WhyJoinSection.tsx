@@ -4,16 +4,13 @@ import { cards } from "@/data/WhyJoinSection";
 
 export default function WhyJoinSection() {
   return (
-    <section className="w-[1136px] flex flex-col gap-7">
+    <section className="w-full flex flex-col gap-[28px]">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Image src="/svg/game/hundred.svg" alt="icon" width={30} height={30} />
-
-          <h2 className="text-white text-[20px] font-extrabold font-jost tracking-[0.01em] uppercase">
-            WHY JOIN MIGHTY LUCK?
-          </h2>
-        </div>
+      <div className="flex items-center gap-3 h-[30px]">
+        <Image src="/svg/game/hundred.svg" alt="icon" width={30} height={30} />
+        <h2 className="font-jost font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white uppercase">
+          WHY JOIN MIGHTY LUCK?
+        </h2>
       </div>
 
       {/* Cards */}
@@ -24,7 +21,12 @@ export default function WhyJoinSection() {
             title={card.title}
             description={card.description}
             image={card.image}
-            rotate={card.rotate}
+            imgLeft={card.imgLeft}
+            imgTop={card.imgTop}
+            imgWidth={card.imgWidth}
+            imgHeight={card.imgHeight}
+            imgRotate={card.imgRotate}
+            descWeight={card.descWeight}
           />
         ))}
       </div>

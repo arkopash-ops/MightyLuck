@@ -1,23 +1,35 @@
 export const cards = [
     {
         title: "FAST WITHDRAWALS",
-        description:
-            "Don’t miss a beat! Enjoy fast withdrawals and celebrate your winnings in record time.",
+        description: "Don't miss a beat! Enjoy fast withdrawals and celebrate your winnings in record time.",
         image: "/image/games/clock.png",
-        rotate: "rotate-[10deg]",
+        imgLeft: 150.53,
+        imgTop: 25.3,
+        imgWidth: 322,
+        imgHeight: 215,
+        imgRotate: "rotate(10.6deg)",
+        descWeight: "font-medium",
     },
     {
         title: "Big Winners Welcome",
-        description:
-            "Win big on 4000+ casino games, high betting limits & the best sports action.",
+        description: "Win big on 4000+ casino games, high betting limits & the best sports action.",
         image: "/image/games/trophy.png",
-        rotate: "rotate-[12deg]",
+        imgLeft: 146.74,
+        imgTop: 35,
+        imgWidth: 312,
+        imgHeight: 208,
+        imgRotate: "rotate(12deg)",
+        descWeight: "font-medium",
     },
     {
-        title: "10% CASHBACK",
-        description:
-            "Get 10% cashback from Samba Slots every Monday. No wagering. No worries.",
+        title: "Weekly 10% CASHBACK",
+        description: "Get 10% cashback from Samba Slots every Monday. No wagering. No worries.",
         image: "/image/games/ten-percent.png",
-        rotate: "-rotate-[-10deg]",
+        imgLeft: 130.07,
+        imgTop: -80.93,
+        imgWidth: 350,
+        imgHeight: 410,
+        imgRotate: "matrix(0.99, 0.16, -0.21, 0.98, 0, 0)",
+        descWeight: "font-semibold",
     },
 ];

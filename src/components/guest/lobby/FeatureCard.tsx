@@ -4,44 +4,70 @@ interface FeatureCardProps {
   title: string;
   description: string;
   image: string;
-  rotate?: string;
+  imgLeft: number;
+  imgTop: number;
+  imgWidth: number;
+  imgHeight: number;
+  imgRotate: string;
+  descWeight?: string;
 }
 
 export default function FeatureCard({
   title,
   description,
   image,
-  rotate = "rotate-0",
+  imgLeft,
+  imgTop,
+  imgWidth,
+  imgHeight,
+  imgRotate,
+  descWeight = "font-medium",
 }: FeatureCardProps) {
   return (
-    <div className="relative w-[370px] h-[220px] overflow-hidden rounded-2xl bg-[#0C1F56] px-6 py-6">
-      {/* ellipse 7 */}
-      <div className="absolute w-[160px] h-[160px] -left-[85px] -top-[80px] bg-[#1463FF] blur-[50px]" />
+    <div className="relative w-[370px] h-[220px] flex-shrink-0 rounded-[12px] bg-[#0C1F56] overflow-hidden flex flex-col justify-center items-start p-6 gap-4 isolate">
+      {/* Ellipse 7 - top left glow */}
+      <div
+        className="absolute w-[160px] h-[160px] rounded-full bg-[#1463FF] blur-[50px] z-0"
+        style={{ left: -85, top: -80 }}
+      />
 
-      {/* ellipse 9 */}
-      <div className="absolute w-[200px] h-[200px] -right-[65px] top-[30px] bg-[#1463FF] blur-[50px]" />
-
-      {/* Content */}
-      <div className="relative z-10 w-[200px]">
-        <h3 className="text-white text-[24px] leading-[26px] font-extrabold font-jost tracking-[0.01em]">
+      {/* Text content */}
+      <div className="relative z-[2] w-[200px] flex flex-col gap-4">
+        <h3 className="font-jost font-extrabold text-[24px] leading-[26px] tracking-[0.01em] text-white">
           {title}
         </h3>
-
-        <p className="mt-4 text-[#E8EDFB] text-[16px] leading-[140%] font-medium font-manrope tracking-[0.02em]">
+        <p
+          className={`font-manrope ${descWeight} text-[16px] leading-[140%] tracking-[0.02em] text-[#E8EDFB]`}
+        >
           {description}
         </p>
       </div>
 
-      {/* Right Image */}
-      <div className={`absolute right-[-20px] bottom-0 z-20 ${rotate}`}>
+      {/* Card image */}
+      <div
+        className="absolute z-[2]"
+        style={{
+          left: imgLeft,
+          top: imgTop,
+          transform: imgRotate,
+          width: imgWidth,
+          height: imgHeight,
+        }}
+      >
         <Image
           src={image}
           alt={title}
-          width={220}
-          height={160}
-          className="object-contain"
+          width={imgWidth}
+          height={imgHeight}
+          className="object-contain w-full h-full"
         />
       </div>
+
+      {/* Ellipse 9 - right glow */}
+      <div
+        className="absolute w-[200px] h-[200px] rounded-full bg-[#1463FF] blur-[50px] z-[1]"
+        style={{ right: -65, top: 27 }}
+      />
     </div>
   );
 }

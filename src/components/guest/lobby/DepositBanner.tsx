@@ -16,7 +16,7 @@ const icons = [
 
 export default function DepositBanner() {
   return (
-    <section className="relative w-[1136px] h-[100px] rounded-[16px] bg-[#0C1F56] overflow-hidden">
+    <section className="relative w-full h-[100px] rounded-[16px] bg-[#0C1F56] overflow-hidden">
       {/* Ellipse 6 */}
       <div className="absolute w-[534px] h-[534px] left-1/2 -translate-x-1/2 top-[60px] rounded-full bg-[#1463FF] blur-[50px] opacity-80" />
 
@@ -42,7 +42,7 @@ export default function DepositBanner() {
 
         {/* Button */}
         <button className="w-[148px] h-[40px] rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[14px] font-bold tracking-[0.02em]">
-          Join
+          Deposit Now
         </button>
       </div>
     </section>
