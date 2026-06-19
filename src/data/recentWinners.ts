@@ -1,0 +1,42 @@
+export const winners = [
+    {
+        game: "Sweet Bonanza Super Scatter",
+        image: "/image/games/originals/pandariffic.png",
+        user: "Alb****",
+        time: "14:16 PM",
+        payout: "$126.1",
+        color: "#00DD29",
+    },
+    {
+        game: "Honey Money Multiplier",
+        image: "/image/games/slots/honey-money-multiplier.png",
+        user: "tra****",
+        time: "14:16 PM",
+        payout: "$15.2",
+        color: "#00DD29",
+    },
+    {
+        game: "Dragon Tiger",
+        image: "/image/games/table/dragon-tiger.png",
+        user: "Hid******",
+        time: "14:15 PM",
+        payout: "$77.08",
+        color: "#00DD29",
+    },
+    {
+        game: "Elven Fortune",
+        image: "/image/games/originals/elven-fortune.png",
+        user: "Gin***",
+        time: "14:15 PM",
+        payout: "$0.00",
+        color: "#7795E8",
+    },
+    {
+        game: "XO Paradise",
+        image: "/image/games/originals/xo-paradise.png",
+        user: "Amr******",
+        time: "14:15 PM",
+        payout: "$67.88",
+        color: "#00DD29",
+    },
+];

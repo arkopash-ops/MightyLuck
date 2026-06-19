@@ -1,7 +1,8 @@
 "use client";
+
 import { useState } from "react";
-import { DropdownProps, MenuItemProp } from "@/types/sidebar";
 import Image from "next/image";
+import { DropdownProps, MenuItemProp } from "@/types/sidebar";
 
 function MenuItem({
   icon,
@@ -23,21 +24,6 @@ function MenuItem({
   );
 }
 
-const casinoItems: MenuItemProp[] = [
-  { icon: "/svg/sidebar/game-console.svg", text: "All Games" },
-  { icon: "/svg/sidebar/shiny-star.svg", text: "New Games" },
-  { icon: "/svg/sidebar/fire.svg", text: "Popular Games" },
-  { icon: "/svg/sidebar/thunder.svg", text: "Original Games" },
-  { icon: "/svg/sidebar/rocket.svg", text: "Crash Games" },
-];
-
-const liveCasinoItems: MenuItemProp[] = [
-  { icon: "/svg/sidebar/game-console.svg", text: "All Games" },
-  { icon: "/svg/sidebar/rocket.svg", text: "Blackjack" },
-  { icon: "/svg/sidebar/thunder.svg", text: "Baccarat" },
-  { icon: "/svg/sidebar/shiny-star.svg", text: "Live Games" },
-];
-
 function Dropdown({
   icon,
   label,
@@ -45,27 +31,30 @@ function Dropdown({
   defaultOpen = false,
   mobile = false,
 }: DropdownProps) {
-  const [open, setOpen] = useState(defaultOpen);
+  const [open, setOpen] = useState(() => defaultOpen);
 
   return (
     <div
-      className={`rounded-[8px] bg-[#112F82] overflow-hidden
-        ${mobile ? "w-[374px]" : "w-[200px]"}
-    `}
+      className={`rounded-[8px] bg-[#112F82] overflow-hidden ${
+        mobile ? "w-[374px]" : "w-[200px]"
+      }`}
     >
+      {/* Header Button */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`w-full bg-[#1463FF] flex items-center justify-between px-[10px]
-          ${mobile ? "h-[50px]" : "h-[44px]"}
-        `}
+        className={`w-full bg-[#1463FF] flex items-center justify-between px-[10px] ${
+          mobile ? "h-[50px]" : "h-[44px]"
+        }`}
       >
         <div className="flex items-center gap-[12px]">
           <Image src={icon} alt={label} width={20} height={20} />
 
           <span
-            className={`text-white font-bold tracking-[0.02em]
-              ${mobile ? "text-[16px] leading-[22px]" : "text-[14px] leading-[19px]"}
-            `}
+            className={`text-white font-bold tracking-[0.02em] ${
+              mobile
+                ? "text-[16px] leading-[22px]"
+                : "text-[14px] leading-[19px]"
+            }`}
           >
             {label}
           </span>
@@ -81,12 +70,9 @@ function Dropdown({
         />
       </button>
 
+      {/* Dropdown Items */}
       {open && (
-        <div
-          className={`flex flex-col gap-[20px]
-            ${mobile ? "px-[16px] py-[20px]" : "px-[16px] py-[20px]"}
-          `}
-        >
+        <div className="flex flex-col gap-[20px] px-[16px] py-[20px]">
           {items.map((item) => (
             <MenuItem
               key={item.text}
@@ -101,6 +87,21 @@ function Dropdown({
   );
 }
 
+const casinoItems: MenuItemProp[] = [
+  { icon: "/svg/sidebar/game-console.svg", text: "All Games" },
+  { icon: "/svg/sidebar/shiny-star.svg", text: "New Games" },
+  { icon: "/svg/sidebar/fire.svg", text: "Popular Games" },
+  { icon: "/svg/sidebar/thunder.svg", text: "Original Games" },
+  { icon: "/svg/sidebar/rocket.svg", text: "Crash Games" },
+];
+
+const liveCasinoItems: MenuItemProp[] = [
+  { icon: "/svg/sidebar/game-console.svg", text: "All Games" },
+  { icon: "/svg/sidebar/rocket.svg", text: "Blackjack" },
+  { icon: "/svg/sidebar/thunder.svg", text: "Baccarat" },
+  { icon: "/svg/sidebar/shiny-star.svg", text: "Live Games" },
+];
+
 export default function CasinoDropdown({
   mobile = false,
 }: {
@@ -114,6 +115,7 @@ export default function CasinoDropdown({
         label="Casino"
         items={casinoItems}
       />
+
       <Dropdown
         mobile={mobile}
         icon="/svg/sidebar/clover.svg"

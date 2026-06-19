@@ -58,12 +58,8 @@ export default function GuestLobby() {
       <main className="w-full min-h-screen bg-[#091741]">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex pt-4 md:pt-6 px-4 md:pl-6 md:pr-0 pb-10 gap-6">
-            {/* desktop sidebar */}
-            <Sidebar />
-
-            {/* mobile sidebar */}
+            {/* sidebar */}
             <Sidebar
-              mobile
               isOpen={isSidebarOpen}
               onClose={() => setIsSidebarOpen(false)}
             />
