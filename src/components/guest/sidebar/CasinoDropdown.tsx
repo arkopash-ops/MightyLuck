@@ -1,13 +1,22 @@
 "use client";
 import { useState } from "react";
-import { MenuItemProp } from "@/types/sidebar/MenuItemsProp";
+import { DropdownProps, MenuItemProp } from "@/types/sidebar";
 import Image from "next/image";
 
-function MenuItem({ icon, text }: MenuItemProp) {
+function MenuItem({
+  icon,
+  text,
+  mobile = false,
+}: MenuItemProp & { mobile?: boolean }) {
   return (
     <div className="flex items-center gap-[12px]">
       <Image src={icon} alt={text} width={20} height={20} />
-      <span className="text-[#D2DCF7] text-[14px] font-semibold leading-[19px] tracking-[0.02em]">
+
+      <span
+        className={`text-[#D2DCF7] font-semibold tracking-[0.02em] ${
+          mobile ? "text-[16px] leading-[22px]" : "text-[14px] leading-[19px]"
+        }`}
+      >
         {text}
       </span>
     </div>
@@ -29,30 +38,43 @@ const liveCasinoItems: MenuItemProp[] = [
   { icon: "/svg/sidebar/shiny-star.svg", text: "Live Games" },
 ];
 
-interface DropdownProps {
-  icon: string;
-  label: string;
-  items: MenuItemProp[];
-  defaultOpen?: boolean;
-}
-
-function Dropdown({ icon, label, items, defaultOpen = false }: DropdownProps) {
+function Dropdown({
+  icon,
+  label,
+  items,
+  defaultOpen = false,
+  mobile = false,
+}: DropdownProps) {
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="w-[200px] rounded-[8px] bg-[#112F82] overflow-hidden">
+    <div
+      className={`rounded-[8px] bg-[#112F82] overflow-hidden
+        ${mobile ? "w-[374px]" : "w-[200px]"}
+    `}
+    >
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full h-[44px] bg-[#1463FF] px-[10px] flex items-center justify-between"
+        className={`w-full bg-[#1463FF] flex items-center justify-between px-[10px]
+          ${mobile ? "h-[50px]" : "h-[44px]"}
+        `}
       >
         <div className="flex items-center gap-[12px]">
           <Image src={icon} alt={label} width={20} height={20} />
-          <span className="text-white font-bold text-[14px] leading-[19px] tracking-[0.02em]">
+
+          <span
+            className={`text-white font-bold tracking-[0.02em]
+              ${mobile ? "text-[16px] leading-[22px]" : "text-[14px] leading-[19px]"}
+            `}
+          >
             {label}
           </span>
         </div>
+
         <Image
-          src={open ? "/svg/sidebar/arrow-up.svg" : "/svg/sidebar/arrow-down.svg"}
+          src={
+            open ? "/svg/sidebar/arrow-up.svg" : "/svg/sidebar/arrow-down.svg"
+          }
           alt={open ? "collapse" : "expand"}
           width={14}
           height={14}
@@ -60,9 +82,18 @@ function Dropdown({ icon, label, items, defaultOpen = false }: DropdownProps) {
       </button>
 
       {open && (
-        <div className="px-[16px] py-[20px] flex flex-col gap-[20px]">
+        <div
+          className={`flex flex-col gap-[20px]
+            ${mobile ? "px-[16px] py-[20px]" : "px-[16px] py-[20px]"}
+          `}
+        >
           {items.map((item) => (
-            <MenuItem key={item.text} icon={item.icon} text={item.text} />
+            <MenuItem
+              key={item.text}
+              icon={item.icon}
+              text={item.text}
+              mobile={mobile}
+            />
           ))}
         </div>
       )}
@@ -70,15 +101,21 @@ function Dropdown({ icon, label, items, defaultOpen = false }: DropdownProps) {
   );
 }
 
-export default function CasinoDropdown() {
+export default function CasinoDropdown({
+  mobile = false,
+}: {
+  mobile?: boolean;
+}) {
   return (
     <div className="flex flex-col gap-[16px]">
       <Dropdown
+        mobile={mobile}
         icon="/svg/sidebar/card-casino.svg"
         label="Casino"
         items={casinoItems}
       />
       <Dropdown
+        mobile={mobile}
         icon="/svg/sidebar/clover.svg"
         label="Live Casino"
         items={liveCasinoItems}

@@ -1,9 +1,9 @@
-import { NavbarProp } from "@/types/navbar/navbarProp";
+import { NavbarProp } from "@/types/navbar";
 import Image from "next/image";
 
 export default function Navbar({ onLogin, onJoin }: NavbarProp) {
   return (
-    <header className="w-full bg-[#0C1F56] overflow-hidden">
+    <header className="w-full bg-[#0C1F56] overflow-hidden sticky top-0 z-50">
       <div className="max-w-[1440px] mx-auto h-[50px] md:h-[60px] px-5 md:px-6 flex items-center justify-between relative">
         {/* Ellipse 6 */}
         <div className="absolute left-[6px] top-[33px] w-[71.5px] h-[71.5px] md:left-[114px] md:top-[37px] md:w-[143px] md:h-[143px] bg-[#1463FF] blur-[12.5px] md:blur-[25px] rounded-full" />

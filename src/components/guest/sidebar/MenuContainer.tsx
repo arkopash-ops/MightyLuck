@@ -1,18 +1,20 @@
-import { MenuItemProp } from "@/types/sidebar/MenuItemsProp";
+import { MenuItemProps } from "@/types/sidebar";
 import Image from "next/image";
 
-interface TextSize extends MenuItemProp {
-  size: number;
-}
-
-function MenuItem({ icon, text, size }: TextSize) {
+function MenuItem({ icon, text, size, mobile = false }: MenuItemProps) {
   return (
-    <div className="w-[200px] h-[44px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[12px]">
+    <div
+      className={`bg-[#112F82] rounded-[8px] flex items-center px-[10px]
+        ${mobile ? "w-[374px] h-[50px] gap-[8px]" : "w-[200px] h-[44px] gap-[12px]"}
+      `}
+    >
       <Image src={icon} alt={text} width={20} height={20} />
 
       <span
         style={{ fontSize: `${size}px` }}
-        className="text-[#D2DCF7] font-semibold leading-[19px] tracking-[0.02em]"
+        className={`text-[#D2DCF7] font-semibold tracking-[0.02em]
+          ${mobile ? "leading-[22px]" : "leading-[19px]"}
+        `}
       >
         {text}
       </span>
@@ -20,14 +22,21 @@ function MenuItem({ icon, text, size }: TextSize) {
   );
 }
 
-export default function MenuContainer() {
+export default function MenuContainer({
+  mobile = false,
+}: {
+  mobile?: boolean;
+}) {
   return (
-    <div className="flex flex-col gap-[16px]">
+    <div
+      className={`flex flex-col ${mobile ? "w-full gap-[12px]" : "gap-[16px]"}`}
+    >
       {/* promotion */}
       <MenuItem
         icon="/svg/sidebar/gift.svg"
         text="Promotions"
         size={16}
+        mobile={mobile}
       />
 
       {/* vip programs */}
@@ -35,13 +44,16 @@ export default function MenuContainer() {
         icon="/svg/sidebar/vip-star.svg"
         text="VIP Programs"
         size={14}
+        mobile={mobile}
       />
 
       {/* tournaments */}
+
       <MenuItem
         icon="/svg/sidebar/trophy.svg"
         text="Tournaments"
         size={14}
+        mobile={mobile}
       />
     </div>
   );
