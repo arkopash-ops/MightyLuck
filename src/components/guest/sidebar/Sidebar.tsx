@@ -5,12 +5,12 @@ import CasinoDropdown from "./CasinoDropdown";
 
 export default function Sidebar() {
   return (
-    <aside className="w-[232px] flex flex-col gap-[10px]">
+    <aside className="hidden md:flex w-[232px] flex-col gap-[10px]">
       {/* Promotion Section */}
       <PromotionCard />
 
       {/* Menu Section */}
-      <div className="w-[232px] h-[596px] bg-[#0C1F56] rounded-[16px] p-[16px]">
+      <div className="w-[232px] bg-[#0C1F56] rounded-[16px] p-[16px]">
         <div className="flex flex-col gap-[16px]">
           <MenuContainer />
 

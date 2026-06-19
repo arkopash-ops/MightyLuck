@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 
 const footerLinks = [
   {
@@ -45,13 +47,47 @@ const footerLinks = [
   },
 ];
 
+function FooterAccordion({ title, items }: { title: string; items: string[] }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-[#112F82]">
+      <button
+        className="w-full flex items-center justify-between py-3"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="text-white font-jost font-bold text-[16px] uppercase tracking-[0.02em]">
+          {title}
+        </span>
+        <Image
+          src={open ? "/svg/footer/arrow-up.svg" : "/svg/footer/arrow-down.svg"}
+          alt={open ? "collapse" : "expand"}
+          width={10}
+          height={6}
+        />
+      </button>
+      {open && (
+        <div className="flex flex-col gap-3 pb-3">
+          {items.map((item) => (
+            <a
+              key={item}
+              href="#"
+              className="text-[#D2DCF7] font-manrope font-semibold text-[14px] leading-[19px] tracking-[0.01em] hover:text-white"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="w-full bg-[#091741]">
-      <div className="max-w-[1136px] mx-auto flex flex-col gap-[48px]">
-        {/* Top row */}
-        <div className="flex justify-between items-start pt-0">
-          {/* Logo + copyright */}
+      <div className="max-w-[1136px] mx-auto px-4 md:px-0 flex flex-col gap-[48px] p-[100px]">
+        {/* Top row — desktop */}
+        <div className="hidden md:flex justify-between items-start pt-0">
           <div className="flex flex-col gap-4 w-[213px]">
             <Image
               src="/svg/footer/logo.svg"
@@ -63,8 +99,6 @@ export default function Footer() {
               @ 2026 Mighty Luck. All rights reserved.
             </p>
           </div>
-
-          {/* Nav columns */}
           <div className="flex gap-8">
             {footerLinks.map((col) => (
               <div key={col.title} className="flex flex-col gap-3 w-[120px]">
@@ -87,17 +121,40 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Mobile top — logo + accordion */}
+        <div className="flex md:hidden flex-col gap-4 pt-6">
+          <div className="flex flex-col gap-2">
+            <Image
+              src="/svg/footer/logo.svg"
+              alt="Mighty Luck"
+              width={100}
+              height={38}
+            />
+            <p className="text-[#D2DCF7] font-manrope font-semibold text-[11px] leading-[15px] tracking-[0.01em]">
+              @ 2026 Mighty Luck. All rights reserved.
+            </p>
+          </div>
+          <div className="flex flex-col">
+            {footerLinks.map((col) => (
+              <FooterAccordion
+                key={col.title}
+                title={col.title}
+                items={col.items}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Bottom row */}
-        <div className="border-t border-[#112F82] pt-[48px] pb-10 flex justify-between items-start">
-          <p className="text-[#D2DCF7] font-manrope font-semibold text-[10px] leading-[14px] text-justify tracking-[0.01em] max-w-[445px]">
+        <div className="border-t border-[#112F82] pt-[24px] md:pt-[48px] pb-10 flex flex-col md:flex-row gap-6 md:gap-0 justify-between items-center md:items-start">
+          <p className="text-[#D2DCF7] font-manrope font-semibold text-[10px] leading-[14px] text-justify tracking-[0.01em] max-w-full md:max-w-[445px]">
             MightyLuck.com is owned and operated by Company Name B.V. a company
             that is incorporated under the laws of Curacao with company
             registration number XXXXXX, having its registered address at Street
             3XX9, City, Curaçao. MightyLuck.com is licensed and holds a valid
             Certificate of Operation (ABC/XXXX/XXX/XXXX).
           </p>
-
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6 md:gap-8">
             <Image
               src="/svg/footer/18Plus.svg"
               alt="18+"

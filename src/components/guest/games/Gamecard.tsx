@@ -3,7 +3,7 @@ import { GameCardProp } from "@/types/games/GameCardsProp";
 
 export default function GameCard({ image, title }: GameCardProp) {
   return (
-    <div className="group relative w-[152px] h-[200px] flex-shrink-0 rounded-[12px] overflow-hidden cursor-pointer">
+    <div className="group relative w-[121.6px] md:w-[152px] h-[160px] md:h-[200px] flex-shrink-0 rounded-[9.6px] md:rounded-[12px] overflow-hidden cursor-pointer">
       {/* Background Image */}
       <Image src={image} alt={title} fill className="object-cover" />
 

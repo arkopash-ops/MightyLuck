@@ -10,7 +10,7 @@ export default function GamesRow({ games, scrollRef }: GamesRowProps2) {
   return (
     <div
       ref={scrollRef}
-      className="w-full h-[200px] flex gap-[12px] overflow-x-auto scroll-smooth"
+      className="w-full h-[160px] md:h-[200px] flex gap-[8px] md:gap-[12px] overflow-x-auto scroll-smooth"
       style={{ scrollbarWidth: "none" }}
     >
       {games.map((game) => (

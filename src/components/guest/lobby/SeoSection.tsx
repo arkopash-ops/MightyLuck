@@ -2,31 +2,17 @@
 import { useState } from "react";
 import Image from "next/image";
 
-const icons = [
-  { name: "bitcoin", width: 13.38, height: 18.39 },
-  { name: "ether", width: 11.3, height: 18.09 },
-  { name: "tether", width: 19.09, height: 17.73 },
-  { name: "tron", width: 18.1, height: 19.05 },
-  { name: "xrp", width: 21.4, height: 17.7 },
-  { name: "binance", width: 18.14, height: 18.14 },
-  { name: "dogecoin", width: 15, height: 16.36 },
-  { name: "litecoin", width: 14.09, height: 17.27 },
-  { name: "catcoin", width: 17.09, height: 18.56 },
-  { name: "sandcoin", width: 14.2, height: 17.52 },
-  { name: "polygon", width: 19.89, height: 17.52 },
-];
-
 export default function SeoSection() {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div className="w-full bg-[#091741] py-[40px]">
-      <div className="w-[1136px] mx-auto flex flex-col items-center">
+      <div className="w-full max-w-[1136px] mx-auto px-4 md:px-0 flex flex-col items-center">
         {/* Text content */}
-        <div className="relative w-[800px]">
-          {/* Block 1 — always visible */}
-          <div className="flex flex-col gap-[24px] w-[800px] mb-[24px]">
-            <h2 className="font-jost font-bold text-[32px] leading-[120%] tracking-[-0.02em] text-white">
+        <div className="relative w-full md:w-[800px]">
+          {/* Block 1 */}
+          <div className="flex flex-col gap-[24px] w-full md:w-[800px] mb-[24px]">
+            <h2 className="font-jost font-bold text-[22px] md:text-[32px] leading-[120%] tracking-[-0.02em] text-white">
               Play the Best Crypto Casino Games Online at Mighty Luck — Fast,
               Fair and Secure
             </h2>
@@ -50,8 +36,8 @@ export default function SeoSection() {
             </p>
           </div>
 
-          {/* Block 2 — always visible */}
-          <div className="flex flex-col gap-[16px] w-[800px] mb-[24px]">
+          {/* Block 2 */}
+          <div className="flex flex-col gap-[16px] w-full md:w-[800px] mb-[24px]">
             <h3 className="font-jost font-bold text-[24px] leading-[35px] text-white">
               Why Mighty Luck Is the Ultimate Place to Play Crypto Casino Games
             </h3>
@@ -64,12 +50,12 @@ export default function SeoSection() {
             </p>
           </div>
 
-          {/* Block 3 — collapsed by default */}
+          {/* Block 3 */}
           <div
             className="overflow-hidden transition-all duration-300"
             style={{ maxHeight: expanded ? "200px" : "80px" }}
           >
-            <div className="flex flex-col gap-[16px] w-[800px]">
+            <div className="flex flex-col gap-[16px] w-full md:w-[800px]">
               <h3 className="font-jost font-bold text-[24px] leading-[35px] text-white">
                 Massive Game Variety
               </h3>
@@ -82,7 +68,7 @@ export default function SeoSection() {
             </div>
           </div>
 
-          {/* Gradient + Read more — shown when collapsed */}
+          {/* shown when collapsed */}
           {!expanded && (
             <div
               className="absolute bottom-0 left-0 right-0 h-[32px] flex items-end justify-center pb-1 pointer-events-none"
@@ -105,22 +91,6 @@ export default function SeoSection() {
               </button>
             </div>
           )}
-        </div>
-
-        {/* Crypto icons bar */}
-        <div className="relative w-full h-[100px] border-b border-[#112F82] flex items-center justify-center overflow-hidden mt-8">
-          <div className="absolute w-[390px] h-[390px] left-1/2 -translate-x-1/2 top-[77px] rounded-full bg-[#1463FF] blur-[50px] z-0" />
-          <div className="relative z-[1] flex items-center gap-[28px]">
-            {icons.map((icon) => (
-              <Image
-                key={icon.name}
-                src={`/svg/crypto/${icon.name}.svg`}
-                alt={icon.name}
-                width={icon.width}
-                height={icon.height}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>

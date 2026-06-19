@@ -16,31 +16,35 @@ const icons = [
 
 export default function DepositBanner() {
   return (
-    <section className="relative w-full h-[100px] rounded-[16px] bg-[#0C1F56] overflow-hidden">
+    <section className="relative w-full h-auto md:h-[100px] rounded-[10px] md:rounded-[16px] bg-[#0C1F56] overflow-hidden">
       {/* Ellipse 6 */}
-      <div className="absolute w-[534px] h-[534px] left-1/2 -translate-x-1/2 top-[60px] rounded-full bg-[#1463FF] blur-[50px] opacity-80" />
+      <div className="absolute w-[416px] h-[416px] md:w-[534px] md:h-[534px] left-1/2 -translate-x-1/2 top-[95px] md:top-[60px] rounded-full bg-[#1463FF] blur-[39px] md:blur-[50px]" />
 
-      {/* Content */}
-      <div className="relative z-[1] h-full flex items-center justify-between px-[40px]">
-        {/* Title */}
-        <h2 className="text-white font-extrabold text-[20px] leading-[29px]">
+      {/* Mobile: stacked layout */}
+      <div className="relative z-[1] flex flex-col md:hidden items-center gap-5 px-5 py-5">
+        <h2 className="text-white font-jost font-extrabold text-[18px] leading-[26px] text-center">
           Want to play? Deposit Now
         </h2>
-
-        {/* Payment Icons */}
-        <div className="flex items-center gap-[28px]">
+        <div className="flex flex-wrap justify-around items-center gap-y-4 gap-x-2 w-full">
           {icons.map((icon) => (
-            <Image
-              key={icon.name}
-              src={`/svg/crypto/${icon.name}.svg`}
-              alt={icon.name}
-              width={icon.width}
-              height={icon.height}
-            />
+            <Image key={icon.name} src={`/svg/crypto/${icon.name}.svg`} alt={icon.name} width={icon.width} height={icon.height} />
           ))}
         </div>
+        <button className="w-[148px] h-[40px] rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[14px] font-bold tracking-[0.02em]">
+          Deposit Now
+        </button>
+      </div>
 
-        {/* Button */}
+      {/* Desktop: single row */}
+      <div className="relative z-[1] h-full hidden md:flex items-center justify-between px-[40px]">
+        <h2 className="text-white font-jost font-extrabold text-[20px] leading-[29px]">
+          Want to play? Deposit Now
+        </h2>
+        <div className="flex items-center gap-[28px]">
+          {icons.map((icon) => (
+            <Image key={icon.name} src={`/svg/crypto/${icon.name}.svg`} alt={icon.name} width={icon.width} height={icon.height} />
+          ))}
+        </div>
         <button className="w-[148px] h-[40px] rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[14px] font-bold tracking-[0.02em]">
           Deposit Now
         </button>

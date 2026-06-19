@@ -55,72 +55,140 @@ export default function RecentWinners() {
   return (
     <section className="w-full flex flex-col gap-5">
       {/* Header */}
-      <div className="flex items-center gap-3 h-[30px]">
+      <div className="flex items-center gap-2 md:gap-3">
         <Image
           src="/svg/game/trophy.svg"
           alt="winners"
           width={30}
           height={30}
+          className="w-[22px] h-[22px] md:w-[30px] md:h-[30px]"
         />
-        <h2 className="text-white font-jost font-extrabold text-[20px] tracking-[0.01em] uppercase">
+
+        <h2 className="font-jost font-extrabold uppercase tracking-[0.01em] text-white text-[16px] md:text-[18px] lg:text-[20px]">
           RECENT WINNERS
         </h2>
       </div>
 
       {/* Table */}
-      <div className="flex flex-col gap-2">
-        {/* Column headers */}
-        <div className="flex justify-between items-center px-6 h-[20px]">
-          <span className="text-white font-jost font-bold text-[14px] uppercase tracking-[0.02em]">
-            Game
-          </span>
-          <div className="flex gap-3 w-[624px]">
-            <span className="text-white font-jost font-bold text-[14px] uppercase tracking-[0.02em] w-[300px]">
-              Username
-            </span>
-            <span className="text-white font-jost font-bold text-[14px] uppercase tracking-[0.02em] w-[150px]">
-              Time
-            </span>
-            <span className="text-white font-jost font-bold text-[14px] uppercase tracking-[0.02em] w-[150px] text-right">
-              Payout
-            </span>
-          </div>
-        </div>
+      <div className="overflow-x-auto">
+        {/* Desktop Figma width */}
+        <div className="min-w-[700px] lg:min-w-[1136px] flex flex-col gap-2">
+          {/* Header Row */}
+          <div className="flex justify-between items-center px-4 lg:px-6 h-[20px]">
+            <div className="w-[220px]">
+              <span className="font-jost font-bold uppercase tracking-[0.02em] text-white text-[12px] lg:text-[14px]">
+                Game
+              </span>
+            </div>
 
-        {/* Rows */}
-        {winners.map((w, i) => (
-          <div
-            key={i}
-            className="flex justify-between items-center px-6 h-[60px] bg-[#0C1F56] rounded-[8px]"
-          >
-            <div className="flex items-center gap-3">
-              <Image
-                src={w.image}
-                alt={w.game}
-                width={22}
-                height={30}
-                className="rounded-[1.8px] object-cover flex-shrink-0"
-              />
-              <span className="text-white font-manrope font-semibold text-[14px] tracking-[0.02em]">
-                {w.game}
-              </span>
-            </div>
-            <div className="flex gap-3 w-[624px]">
-              <span className="text-white font-manrope font-semibold text-[14px] tracking-[0.02em] w-[300px]">
-                {w.user}
-              </span>
-              <span className="text-white font-manrope font-semibold text-[14px] tracking-[0.02em] w-[150px]">
-                {w.time}
-              </span>
-              <span
-                className="font-manrope font-semibold text-[14px] tracking-[0.02em] w-[150px] text-right"
-                style={{ color: w.color }}
-              >
-                {w.payout}
-              </span>
+            <div className="flex w-[420px] md:w-[520px] lg:w-[624px]">
+              <div className="w-[180px] lg:w-[300px]">
+                <span className="font-jost font-bold uppercase tracking-[0.02em] text-white text-[12px] lg:text-[14px]">
+                  Username
+                </span>
+              </div>
+
+              <div className="w-[100px] lg:w-[150px]">
+                <span className="font-jost font-bold uppercase tracking-[0.02em] text-white text-[12px] lg:text-[14px]">
+                  Time
+                </span>
+              </div>
+
+              <div className="w-[100px] lg:w-[150px] text-right">
+                <span className="font-jost font-bold uppercase tracking-[0.02em] text-white text-[12px] lg:text-[14px]">
+                  Payout
+                </span>
+              </div>
             </div>
           </div>
-        ))}
+
+          {/* Rows */}
+          {winners.map((w, i) => (
+            <div
+              key={i}
+              className="
+                flex
+                justify-between
+                items-center
+
+                px-4
+                lg:px-6
+
+                py-3
+                lg:py-[12px]
+
+                bg-[#0C1F56]
+                rounded-[8px]
+
+                min-h-[52px]
+                lg:h-[60px]
+              "
+            >
+              {/* Game */}
+              <div className="w-[220px] flex items-center gap-2 lg:gap-3">
+                <Image
+                  src={w.image}
+                  alt={w.game}
+                  width={22}
+                  height={30}
+                  className="
+                    w-[18px]
+                    h-[24px]
+
+                    lg:w-[22px]
+                    lg:h-[30px]
+
+                    rounded-[2px]
+                    object-cover
+                    flex-shrink-0
+                  "
+                />
+
+                <span
+                  className="
+                  text-white
+                  font-manrope
+                  font-semibold
+
+                  text-[12px]
+                  lg:text-[14px]
+
+                  leading-[19px]
+                  tracking-[0.02em]
+
+                  truncate
+                "
+                >
+                  {w.game}
+                </span>
+              </div>
+
+              {/* Right side */}
+              <div className="flex w-[420px] md:w-[520px] lg:w-[624px]">
+                <div className="w-[180px] lg:w-[300px]">
+                  <span className="text-white font-manrope font-semibold text-[12px] lg:text-[14px]">
+                    {w.user}
+                  </span>
+                </div>
+
+                <div className="w-[100px] lg:w-[150px]">
+                  <span className="text-white font-manrope font-semibold text-[12px] lg:text-[14px]">
+                    {w.time}
+                  </span>
+                </div>
+
+                <div className="w-[100px] lg:w-[150px] text-right">
+                  <span
+                    className="font-manrope font-semibold text-[12px] lg:text-[14px]"
+                    style={{ color: w.color }}
+                  >
+                    {w.payout}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
