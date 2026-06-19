@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import Navbar from "@/components/guest/Navbar";
 import Sidebar from "@/components/guest/sidebar/Sidebar";
 import HeroBanner from "@/components/guest/lobby/HeroBanner";
@@ -17,11 +21,25 @@ import CollectionsSection from "@/components/guest/lobby/CollectionsSection";
 import SeoSection from "@/components/guest/lobby/SeoSection";
 import CryptoBar from "@/components/guest/lobby/CryptoBar";
 import Footer from "@/components/guest/Footer";
+import AuthPage from '../../(auth)/auth/page';
 
 export default function GuestLobby() {
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authType, setAuthType] = useState<"login" | "signup">("login");
+
+  const openLogin = () => {
+    setAuthType("login");
+    setAuthOpen(true);
+  };
+
+  const openSignup = () => {
+    setAuthType("signup");
+    setAuthOpen(true);
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar onLogin={openLogin} onJoin={openSignup} />
 
       <main className="w-full min-h-screen bg-[#091741]">
         <div className="max-w-[1440px] mx-auto">
@@ -99,6 +117,10 @@ export default function GuestLobby() {
 
         <Footer />
       </main>
+
+      {authOpen && (
+        <AuthPage defaultTab={authType} onClose={() => setAuthOpen(false)} />
+      )}
     </>
   );
 }
