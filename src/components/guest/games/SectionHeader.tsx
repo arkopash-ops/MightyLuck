@@ -26,6 +26,7 @@ export default function SectionHeader({
       {/* Left Side */}
       <div className="flex items-center gap-[8px] md:gap-[12px]">
         <Image src={icon} alt={title} width={18} height={18} className="md:w-[30px] md:h-[30px]" />
+        
         <h2 className="text-white text-[16px] md:text-[20px] font-extrabold tracking-[0.01em]">
           {title}
           <span className="ml-1">({count.toLocaleString()})</span>
@@ -53,7 +54,7 @@ export default function SectionHeader({
 
           <button
             onClick={() => scroll("right")}
-            className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] flex items-center justify-center"
+            className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity"
           >
             <Image src="/svg/game/right.svg" alt="Next" width={6} height={10} />
           </button>

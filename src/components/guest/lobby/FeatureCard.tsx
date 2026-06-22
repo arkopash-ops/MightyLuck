@@ -36,9 +36,8 @@ export default function FeatureCard({
         <h3 className="font-jost font-extrabold text-[24px] leading-[26px] tracking-[0.01em] text-white">
           {title}
         </h3>
-        <p
-          className={`font-manrope ${descWeight} text-[16px] leading-[140%] tracking-[0.02em] text-[#E8EDFB]`}
-        >
+
+        <p className={`font-manrope ${descWeight} text-[16px] leading-[140%] tracking-[0.02em] text-[#E8EDFB]`}>
           {description}
         </p>
       </div>
@@ -54,6 +53,7 @@ export default function FeatureCard({
           height: imgHeight,
         }}
       >
+        
         <Image
           src={image}
           alt={title}

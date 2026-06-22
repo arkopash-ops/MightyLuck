@@ -23,7 +23,7 @@ export default function GameProvidersSection() {
 
           <div className="hidden md:flex gap-2">
             {/* Previous */}
-            <button className="w-[30px] h-[30px] rounded bg-[#112F82]/40 flex items-center justify-center">
+            <button className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity">
               <Image
                 src="/svg/game/left.svg"
                 alt="Previous"
@@ -33,7 +33,7 @@ export default function GameProvidersSection() {
             </button>
 
             {/* Next */}
-            <button className="w-[30px] h-[30px] rounded bg-[#112F82] flex items-center justify-center">
+            <button className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity">
               <Image
                 src="/svg/game/right.svg"
                 alt="Next"

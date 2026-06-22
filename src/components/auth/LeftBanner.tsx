@@ -21,7 +21,6 @@ export default function LeftBanner() {
       <div className="absolute bottom-[-129px] left-1/2 -translate-x-1/2 w-[173px] h-[173px] rounded-full bg-[#1463FF] blur-[40px]" />
 
       {/* Content */}
-
       <div className="absolute top-[354px] left-1/2 -translate-x-1/2 w-[300px] flex flex-col items-center gap-5">
         <div className="flex flex-col items-center">
           <h1 className="text-white text-[52px] font-extrabold leading-[75px] tracking-[0.01em]">

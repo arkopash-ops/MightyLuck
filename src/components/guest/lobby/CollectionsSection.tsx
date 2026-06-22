@@ -40,6 +40,7 @@ export default function CollectionsSection() {
           >
             {/* Icon */}
             <div className="relative w-[45.6px] h-[45.6px] rounded-[4.8px] bg-[#0E1B3D] overflow-hidden flex items-center justify-center shrink-0 md:w-[76px] md:h-[76px] md:rounded-[8px]">
+              
               <div className=" absolute w-[42px] h-[42px] rounded-full bg-[#1463FF] blur-[13px] md:w-[70px] md:h-[70px] md:blur-[22px] " />
 
               <Image

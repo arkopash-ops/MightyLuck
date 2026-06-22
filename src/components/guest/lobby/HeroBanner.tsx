@@ -26,10 +26,13 @@ export default function HeroBanner() {
           <p className="font-jost font-medium text-[14px] md:text-[28px] leading-[20px] md:leading-[40px] text-white">
             Get <span className="text-[#FFD85A] font-bold">LUCKY</span> with our exclusive
           </p>
+
           <h1 className="font-jost font-extrabold text-[20px] md:text-[48px] leading-[100%] text-white">
             250% WELCOME BONUS!
           </h1>
+
         </div>
+        
         <button className="w-[95px] md:w-[110px] h-[34px] md:h-[40px] rounded-[6px] md:rounded-[8px] bg-[#FFBF1F] text-[#1A1404] font-manrope font-bold text-[12px] md:text-[14px] leading-[17px] md:leading-[19px] tracking-[0.02em]">
           Join Now
         </button>

@@ -25,11 +25,13 @@ export default function DepositBanner() {
         <h2 className="text-white font-jost font-extrabold text-[18px] leading-[26px] text-center">
           Want to play? Deposit Now
         </h2>
+
         <div className="flex flex-wrap justify-around items-center gap-y-4 gap-x-2 w-full">
           {icons.map((icon) => (
             <Image key={icon.name} src={`/svg/crypto/${icon.name}.svg`} alt={icon.name} width={icon.width} height={icon.height} />
           ))}
         </div>
+
         <button className="w-[148px] h-[40px] rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[14px] font-bold tracking-[0.02em]">
           Deposit Now
         </button>
@@ -40,11 +42,13 @@ export default function DepositBanner() {
         <h2 className="text-white font-jost font-extrabold text-[20px] leading-[29px]">
           Want to play? Deposit Now
         </h2>
+
         <div className="flex items-center gap-[28px]">
           {icons.map((icon) => (
             <Image key={icon.name} src={`/svg/crypto/${icon.name}.svg`} alt={icon.name} width={icon.width} height={icon.height} />
           ))}
         </div>
+        
         <button className="w-[148px] h-[40px] rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[14px] font-bold tracking-[0.02em]">
           Deposit Now
         </button>

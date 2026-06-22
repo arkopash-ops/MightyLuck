@@ -9,6 +9,7 @@ export default function PromotionCard() {
           {/* Refer a Friend */}
           <div className="relative w-[98px] h-[44px] rounded-[8px] overflow-hidden bg-[#3B005F] flex items-center px-[8px]">
             <div className="absolute w-[97px] h-[97px] bg-[#A92BF5] blur-[25px] left-[-43px] top-[-15px]" />
+
             <Image
               src="/image/sidebar/refer.png"
               alt="refer"
@@ -46,6 +47,7 @@ export default function PromotionCard() {
         {/* Second Row */}
         <div className="relative w-[200px] h-[50px] rounded-[8px] bg-[#091741] overflow-hidden px-[10px] flex items-center">
           <div className="absolute w-[110px] h-[110px] bg-[#1463FF] blur-[25px] left-[-53px] top-[-22px]" />
+
           <Image
             src="/image/sidebar/snowflake.png"
             alt="snow"
@@ -59,6 +61,7 @@ export default function PromotionCard() {
             <h3 className="text-white italic font-black text-[16px] leading-[14px]">
               WINTER RUSH
             </h3>
+            
             <p className="mt-[2px] text-white italic font-bold text-[12px] leading-[14px]">
               $2,000,000 IN PRIZES
             </p>

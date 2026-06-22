@@ -1,11 +1,25 @@
+"use client";
+
 import { NavbarProp } from "@/types/navbar";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Navbar({ onLogin, onJoin }: NavbarProp) {
+  const router = useRouter();
+
+  const handleLogin = () => {
+    if (window.innerWidth < 768) router.push("/auth/login");
+    else onLogin();
+  };
+
+  const handleJoin = () => {
+    if (window.innerWidth < 768) router.push("/auth/signup");
+    else onJoin();
+  };
+
   return (
     <header className="w-full bg-[#0C1F56] overflow-hidden sticky top-0 z-50">
       <div className="max-w-[1440px] mx-auto h-[50px] md:h-[60px] px-5 md:px-6 flex items-center justify-between relative">
-        {/* Ellipse 6 */}
         <div className="absolute left-[6px] top-[33px] w-[71.5px] h-[71.5px] md:left-[114px] md:top-[37px] md:w-[143px] md:h-[143px] bg-[#1463FF] blur-[12.5px] md:blur-[25px] rounded-full" />
 
         {/* Left Section */}
@@ -54,13 +68,13 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
         <div className="relative z-10 flex items-center gap-[7.5px] md:gap-[10px]">
           <button
             className="h-[30px] md:h-[40px] px-[22.5px] md:px-[30px] rounded-[6px] md:rounded-[8px] bg-[#1463FF] text-white text-[10.5px] md:text-[14px] font-bold tracking-[0.02em]"
-            onClick={onLogin}
+            onClick={handleLogin}
           >
             Login
           </button>
           <button
             className="h-[30px] md:h-[40px] px-[22.5px] md:px-[30px] rounded-[6px] md:rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[10.5px] md:text-[14px] font-bold tracking-[0.02em]"
-            onClick={onJoin}
+            onClick={handleJoin}
           >
             Join
           </button>
