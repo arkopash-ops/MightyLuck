@@ -1,14 +1,62 @@
+"use client";
+
 import { AuthMobileProps } from "@/types/auth";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import PhoneField from "./PhoneField";
+import { useAppDispatch } from "@/redux/hooks";
+import { loginSuccess } from "@/redux/slices/authSlice";
+import { login, signup } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [tab, setTab] = useState<"signup" | "login">(defaultTab);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const [signupForm, setSignupForm] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phone: "",
+  });
 
   const inputClass = `w-full h-[50px] rounded-[8px] bg-[#112F82] px-4 text-[14px] font-semibold text-white placeholder:text-[#A5B8EF] outline-none`;
+
+  const handleLogin = () => {
+    setError("");
+    const user = login(loginForm.email, loginForm.password);
+    if (!user) {
+      setError("Invalid email or password.");
+      return;
+    }
+    dispatch(loginSuccess(user));
+    router.push("/");
+  };
+
+  const handleSignup = () => {
+    setError("");
+    const { username, firstName, lastName, email, password } = signupForm;
+    if (!username || !firstName || !lastName || !email || !password) {
+      setError("Please fill all fields.");
+      return;
+    }
+
+    const user = signup({ ...signupForm });
+    if (!user) {
+      setError("Email already registered.");
+      return;
+    }
+
+    dispatch(loginSuccess(user));
+    router.push("/");
+  };
 
   return (
     <div className="min-h-screen bg-[#091741] overflow-x-hidden">
@@ -25,24 +73,24 @@ export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
             height={15.77}
           />
         </button>
+
         <div className="flex gap-2 flex-1">
           <button
-            onClick={() => setTab("signup")}
-            className={`flex-1 h-[50px] rounded-lg text-sm font-bold ${
-              tab === "signup"
-                ? "bg-[#FFC83D] text-black"
-                : "bg-[#1463FF] text-white"
-            }`}
+            onClick={() => {
+              setTab("signup");
+              setError("");
+            }}
+            className={`flex-1 h-[50px] rounded-lg text-sm font-bold ${tab === "signup" ? "bg-[#FFC83D] text-black" : "bg-[#1463FF] text-white"}`}
           >
             Join
           </button>
+
           <button
-            onClick={() => setTab("login")}
-            className={`flex-1 h-[50px] rounded-lg text-sm font-bold ${
-              tab === "login"
-                ? "bg-[#FFC83D] text-black"
-                : "bg-[#1463FF] text-white"
-            }`}
+            onClick={() => {
+              setTab("login");
+              setError("");
+            }}
+            className={`flex-1 h-[50px] rounded-lg text-sm font-bold ${tab === "login" ? "bg-[#FFC83D] text-black" : "bg-[#1463FF] text-white"}`}
           >
             Log In
           </button>
@@ -57,16 +105,21 @@ export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
           fill
           className="object-cover"
         />
+
         <div className="absolute inset-0 bg-black/30" />
+
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="absolute left-1/2 top-1/2 -z-10 h-[281px] w-[281px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0051F1] blur-[62px]" />
+
           <div className="flex flex-col items-center gap-3">
             <h1 className="text-white text-[44px] font-extrabold">350%</h1>
+
             <div className="px-[17px] py-[8px] rounded-full bg-[#2BEA51]">
               <span className="text-[10px] font-extrabold text-[#051D09]">
                 WELCOME PACKAGE
               </span>
             </div>
+
             <p className="w-[200px] text-center text-white text-[12px] font-bold leading-4">
               Boost your deposits with 350% in Bonus and 200 Free Spins
             </p>
@@ -78,18 +131,59 @@ export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
       <div className="px-5 pt-5 pb-10">
         {tab === "signup" ? (
           <div className="flex flex-col gap-3">
-            <input placeholder="User name" className={inputClass} />
+            {/* username */}
+            <input
+              placeholder="User name"
+              className={inputClass}
+              value={signupForm.username}
+              onChange={(e) =>
+                setSignupForm((p) => ({ ...p, username: e.target.value }))
+              }
+            />
+
+            {/* first name + last name */}
             <div className="flex gap-2">
-              <input placeholder="First Name" className={inputClass} />
-              <input placeholder="Last Name" className={inputClass} />
+              <input
+                placeholder="First Name"
+                className={inputClass}
+                value={signupForm.firstName}
+                onChange={(e) =>
+                  setSignupForm((p) => ({ ...p, firstName: e.target.value }))
+                }
+              />
+
+              <input
+                placeholder="Last Name"
+                className={inputClass}
+                value={signupForm.lastName}
+                onChange={(e) =>
+                  setSignupForm((p) => ({ ...p, lastName: e.target.value }))
+                }
+              />
             </div>
-            <input placeholder="Email" className={inputClass} />
+
+            {/* email */}
+            <input
+              placeholder="Email"
+              className={inputClass}
+              value={signupForm.email}
+              onChange={(e) =>
+                setSignupForm((p) => ({ ...p, email: e.target.value }))
+              }
+            />
+
+            {/* password */}
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 className={`${inputClass} pr-12`}
+                value={signupForm.password}
+                onChange={(e) =>
+                  setSignupForm((p) => ({ ...p, password: e.target.value }))
+                }
               />
+
               <button
                 type="button"
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A5B8EF]"
@@ -98,22 +192,39 @@ export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
+
+            {/* phone number */}
             <PhoneField />
+
             <p className="text-[10px] text-center leading-[14px] text-[#BBCAF3] mt-1">
-              By clicking &ldquo;Join Now&ldquo; I confirm that I&apos;m
-              over 18 years old and agree to Mighty Luck T&C along with the
-              Privacy Policy
+              By clicking “Join Now” I confirm that I’m over 18 years old and
+              agree to Mighty Luck T&C along with the Privacy Policy
             </p>
           </div>
         ) : (
           <div className="flex flex-col gap-3">
-            <input placeholder="Email" className={inputClass} />
+            {/* email */}
+            <input
+              placeholder="Email"
+              className={inputClass}
+              value={loginForm.email}
+              onChange={(e) =>
+                setLoginForm((p) => ({ ...p, email: e.target.value }))
+              }
+            />
+
+            {/* password */}
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 className={`${inputClass} pr-12`}
+                value={loginForm.password}
+                onChange={(e) =>
+                  setLoginForm((p) => ({ ...p, password: e.target.value }))
+                }
               />
+
               <button
                 type="button"
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A5B8EF]"
@@ -125,10 +236,19 @@ export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
           </div>
         )}
 
+        {error && <p className="text-[12px] text-red-400 mt-2">{error}</p>}
+
+        {/* Action Section */}
         <div className="mt-8 flex flex-col gap-3">
-          <button className="w-full h-[60px] rounded-lg bg-[#FFC83D] text-[16px] font-bold text-[#1A1404]">
+          {/* Button */}
+          <button
+            onClick={tab === "signup" ? handleSignup : handleLogin}
+            className="w-full h-[60px] rounded-lg bg-[#FFC83D] text-[16px] font-bold text-[#1A1404]"
+          >
             {tab === "signup" ? "Join with a 350% Bonus" : "Log In"}
           </button>
+
+          {/* Support */}
           <div className="flex justify-center items-center gap-2">
             <Image
               src="/svg/auth/support.svg"
@@ -136,8 +256,9 @@ export default function AuthMobile({ defaultTab, onBack }: AuthMobileProps) {
               width={16}
               height={16}
             />
+
             <span className="text-[12px] text-[#7795E8]">
-              Having problems?
+              Having problems?{" "}
               <span className="text-[#FFC83D] ml-1">Contact support</span>
             </span>
           </div>
