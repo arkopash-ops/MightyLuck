@@ -7,7 +7,7 @@ export default function AuthPage({ defaultTab, onClose }: AuthPageProps) {
     <>
       {/* desktop */}
       <div className="hidden md:block">
-        <AuthDesktop defaultTab="signup" onClose={onClose} />
+        <AuthDesktop defaultTab={defaultTab} onClose={onClose} />
       </div>
 
       {/* Mobile */}
