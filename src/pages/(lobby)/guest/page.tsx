@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/guest/sidebar/Sidebar";
 import HeroBanner from "@/components/guest/lobby/HeroBanner";
 import DepositBanner from "@/components/guest/lobby/DepositBanner";
-import GameSection from "@/components/guest/games/GameSection";
+import GameSection from "@/components/games/GameSection";
 import {
   bonusGames,
   crashGames,
