@@ -2,20 +2,20 @@
 
 import { useEffect, useState } from "react";
 
-import DepositBanner from "@/components/guest/lobby/DepositBanner";
-import HeroBanner from "@/components/guest/lobby/HeroBanner";
-import Sidebar from "@/components/guest/sidebar/Sidebar";
 import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/guest/sidebar/Sidebar";
+import HeroCarousel from "../../../components/guest/lobby/HeroCarousel";
+import CategoryTabs from "../../../components/guest/lobby/CategoryTabs";
 import GameSection from "@/components/guest/games/GameSection";
 import {
+  bonusGames,
   crashGames,
   originalsGames,
   slotGames,
   tableGames,
 } from "@/data/games";
-import WhyJoinSection from "@/components/guest/lobby/WhyJoinSection";
+import PromotionsSection from "@/components/guest/lobby/PromotionsSection";
 import GameProvidersSection from "@/components/guest/lobby/GameProvidersSection";
-import { bonusGames } from "../../../data/games";
 import CollectionsSection from "@/components/guest/lobby/CollectionsSection";
 import RecentWinners from "@/components/guest/lobby/RecentWinners";
 import SeoSection from "@/components/guest/lobby/SeoSection";
@@ -25,6 +25,7 @@ import BottomNavbar from "@/components/mobile/BottomNavbar";
 
 export default function UserLobby() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("lobby");
 
   useEffect(() => {
     const overflow = isSidebarOpen ? "hidden" : "";
@@ -52,58 +53,116 @@ export default function UserLobby() {
 
             <div className="flex flex-col gap-[60px] md:gap-[100px] flex-1 min-w-0 md:pr-6">
               <div className="flex flex-col gap-[40px]">
-                <div className="flex flex-col gap-[20px]">
-                  {/* hero banner */}
-                  <HeroBanner />
+                {/* hero carousel */}
+                <HeroCarousel />
 
-                  <DepositBanner />
-                </div>
+                {/* categories */}
+                <CategoryTabs active={activeTab} onSelect={setActiveTab} />
 
-                <GameSection
-                  icon="/svg/game/cherry.svg"
-                  title="SLOTS"
-                  count={1487}
-                  games={slotGames}
-                />
+                {activeTab === "lobby" && (
+                  <>
+                    {/* games */}
+                    <GameSection
+                      icon="/svg/game/cherry.svg"
+                      title="SLOTS"
+                      count={1487}
+                      games={slotGames}
+                    />
 
-                <GameSection
-                  icon="/svg/game/thunder.svg"
-                  title="ORIGINALS"
-                  count={14}
-                  games={originalsGames}
-                />
+                    <GameSection
+                      icon="/svg/game/thunder.svg"
+                      title="ORIGINALS"
+                      count={14}
+                      games={originalsGames}
+                    />
 
-                <WhyJoinSection />
+                    {/* promotions */}
+                    <PromotionsSection />
 
-                <GameSection
-                  icon="/svg/game/rocket.svg"
-                  title="CRASH GAMES"
-                  count={723}
-                  games={crashGames}
-                />
+                    <GameSection
+                      icon="/svg/game/rocket.svg"
+                      title="CRASH GAMES"
+                      count={723}
+                      games={crashGames}
+                    />
 
-                <GameProvidersSection />
+                    {/* game providers */}
+                    <GameProvidersSection />
 
-                <GameSection
-                  icon="/svg/game/dice.svg"
-                  title="TABLE GAMES"
-                  count={51}
-                  games={tableGames}
-                />
+                    <GameSection
+                      icon="/svg/game/dice.svg"
+                      title="TABLE GAMES"
+                      count={51}
+                      games={tableGames}
+                    />
 
-                <GameSection
-                  icon="/svg/game/dollar.svg"
-                  title="BONUS BUYS"
-                  count={145}
-                  games={bonusGames}
-                />
+                    <GameSection
+                      icon="/svg/game/dollar.svg"
+                      title="BONUS BUYS"
+                      count={145}
+                      games={bonusGames}
+                    />
 
-                <CollectionsSection />
+                    {/* collections */}
+                    <CollectionsSection />
 
-                <RecentWinners />
+                    {/* recent winners */}
+                    <RecentWinners />
+                  </>
+                )}
+
+                {activeTab === "slots" && (
+                  <GameSection
+                    icon="/svg/game/cherry.svg"
+                    title="SLOTS"
+                    count={1487}
+                    games={slotGames}
+                  />
+                )}
+
+                {activeTab === "originals" && (
+                  <GameSection
+                    icon="/svg/game/thunder.svg"
+                    title="ORIGINALS"
+                    count={14}
+                    games={originalsGames}
+                  />
+                )}
+
+                {activeTab === "crash" && (
+                  <GameSection
+                    icon="/svg/game/rocket.svg"
+                    title="CRASH GAMES"
+                    count={723}
+                    games={crashGames}
+                  />
+                )}
+
+                {activeTab === "providers" && <GameProvidersSection />}
+
+                {activeTab === "table" && (
+                  <GameSection
+                    icon="/svg/game/dice.svg"
+                    title="TABLE GAMES"
+                    count={51}
+                    games={tableGames}
+                  />
+                )}
+
+                {activeTab === "bonus" && (
+                  <GameSection
+                    icon="/svg/game/dollar.svg"
+                    title="BONUS BUYS"
+                    count={145}
+                    games={bonusGames}
+                  />
+                )}
+
+                {activeTab === "collection" && <CollectionsSection />}
               </div>
 
               <div className="flex flex-col gap-[48px]">
+                {/* seo section */}
                 <SeoSection />
               </div>
             </div>

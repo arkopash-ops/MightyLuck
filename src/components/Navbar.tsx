@@ -35,6 +35,7 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
         <div className="relative z-10 flex items-center md:gap-[51px]">
           <div className="flex items-center gap-2 md:gap-[51px]">
             <button className="hidden md:block">
+              {/* Menu */}
               <Image
                 src="/svg/navbar/menu.svg"
                 width={20.57}
@@ -42,6 +43,8 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
                 alt="menu"
               />
             </button>
+
+            {/* desktop logo */}
             <Image
               src="/svg/navbar/horizontal-logo.svg"
               width={190}
@@ -49,6 +52,8 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
               alt="logo"
               className="hidden md:block"
             />
+
+            {/* mobile logo */}
             <Image
               src="/svg/navbar/mobile-logo.svg"
               width={44}
@@ -57,6 +62,8 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
               className="block md:hidden"
             />
           </div>
+
+          {/* searchbar */}
           <div className="relative hidden md:block">
             <Image
               src="/svg/navbar/search.svg"
@@ -65,6 +72,7 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
               alt="search"
               className="absolute left-5 top-1/2 -translate-y-1/2"
             />
+
             <input
               type="text"
               placeholder="What are you looking for?"
@@ -77,41 +85,60 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
         <div className="relative z-10 flex items-center gap-[16px]">
           {user ? (
             <>
+              {/* wallet */}
               <div className="hidden md:flex items-center gap-[4px]">
                 <div className="flex h-[40px] px-[30px] rounded-[8px] bg-[#112F82] items-center justify-center">
                   <span className="text-white text-[14px] font-bold tracking-[0.02em]">
                     $105.98
                   </span>
                 </div>
+
                 <button className="flex h-[40px] px-[16px] gap-[8px] rounded-[8px] bg-[#FFC83D] items-center justify-center">
+                  <Image
+                    src="/svg/navbar/wallet.svg"
+                    width={16}
+                    height={14.37}
+                    alt="logo"
+                  />
+
                   <span className="text-[#1A1404] text-[14px] font-semibold tracking-[0.02em]">
                     Deposit
                   </span>
                 </button>
               </div>
+
               <div className="flex items-center gap-[8px]">
+                {/* bell */}
                 <div className="relative">
                   <button className="w-[40px] h-[40px] rounded-[6px] bg-[#173EAD] flex items-center justify-center">
-                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none">
-                      <path
-                        d="M7 0C7.55 0 8 .45 8 1v.07A6 6 0 0 1 13 7v3l1 1v1H0v-1l1-1V7A6 6 0 0 1 6 1.07V1c0-.55.45-1 1-1zm0 16a2 2 0 0 0 2-2H5a2 2 0 0 0 2 2z"
-                        fill="#D2DCF7"
-                      />
-                    </svg>
+                    <Image
+                      src="/svg/navbar/bell.svg"
+                      width={13.74}
+                      height={16}
+                      alt="logo"
+                    />
                   </button>
+
+                  {/* notification */}
                   <span className="absolute top-0 right-0 w-[8px] h-[8px] rounded-full bg-[#FF0E0E]" />
                 </div>
+
                 <div className="relative">
+                  {/* gifts */}
                   <button className="w-[40px] h-[40px] rounded-[6px] bg-[#173EAD] flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path
-                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4l-4 3V2z"
-                        fill="#D2DCF7"
-                      />
-                    </svg>
+                    <Image
+                      src="/svg/sidebar/gift.svg"
+                      width={16}
+                      height={16}
+                      alt="logo"
+                    />
                   </button>
+
+                  {/* notification */}
                   <span className="absolute top-0 right-0 w-[8px] h-[8px] rounded-full bg-[#FF0E0E]" />
                 </div>
+
+                {/* avatar */}
                 <button
                   onClick={handleLogout}
                   className="w-[40px] h-[40px] rounded-full bg-[#173EAD] flex items-center justify-center text-white text-[12px] font-bold uppercase"
@@ -122,12 +149,15 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
             </>
           ) : (
             <>
+              {/* login */}
               <button
                 onClick={handleLogin}
                 className="h-[30px] md:h-[40px] px-[22.5px] md:px-[30px] rounded-[6px] md:rounded-[8px] bg-[#1463FF] text-white text-[10.5px] md:text-[14px] font-bold tracking-[0.02em]"
               >
                 Login
               </button>
+
+              {/* join */}
               <button
                 onClick={handleJoin}
                 className="h-[30px] md:h-[40px] px-[22.5px] md:px-[30px] rounded-[6px] md:rounded-[8px] bg-[#FFC83D] text-[#1A1404] text-[10.5px] md:text-[14px] font-bold tracking-[0.02em]"

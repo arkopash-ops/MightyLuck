@@ -24,8 +24,10 @@ function MenuItem({ icon, text, size, mobile = false }: MenuItemProps) {
 
 export default function MenuContainer({
   mobile = false,
+  isLoggedIn = false,
 }: {
   mobile?: boolean;
+  isLoggedIn?: boolean;
 }) {
   return (
     <div
@@ -48,13 +50,32 @@ export default function MenuContainer({
       />
 
       {/* tournaments */}
-
       <MenuItem
         icon="/svg/sidebar/trophy.svg"
         text="Tournaments"
         size={14}
         mobile={mobile}
       />
+
+      {isLoggedIn && (
+        <>
+          {/* recently played */}
+          <MenuItem
+            icon="/svg/sidebar/recently-played.svg"
+            text="Recently Played"
+            size={14}
+            mobile={mobile}
+          />
+
+          {/* favorite games */}
+          <MenuItem
+            icon="/svg/sidebar/favorite.svg"
+            text="Favorite Games"
+            size={14}
+            mobile={mobile}
+          />
+        </>
+      )}
     </div>
   );
 }

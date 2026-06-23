@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import PromotionCard from "./PromotionCard";
 import MenuContainer from "./MenuContainer";
 import CasinoDropdown from "./CasinoDropdown";
 import { SidebarProps } from "@/types/sidebar";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
+  const isLoggedIn = !!useSelector((state: RootState) => state.auth.user);
+
   return (
     <>
       {/* DESKTOP SIDEBAR */}
@@ -13,7 +19,8 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
         <div className="w-[232px] bg-[#0C1F56] rounded-[16px] p-[16px]">
           <div className="flex flex-col gap-[16px]">
-            <MenuContainer />
+            <MenuContainer isLoggedIn={isLoggedIn} />
+
             <CasinoDropdown />
 
             <div className="w-[200px] h-[44px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[12px]">
@@ -23,6 +30,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 width={20}
                 height={20}
               />
+
               <span className="text-[#D2DCF7] text-[14px] font-semibold">
                 Live Support
               </span>
@@ -46,7 +54,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         )}
 
         <div className="p-4 flex flex-col gap-4 relative z-40">
-          <MenuContainer mobile />
+          <MenuContainer mobile isLoggedIn={isLoggedIn} />
           <CasinoDropdown mobile />
 
           <div className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]">
@@ -56,6 +64,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               width={20}
               height={20}
             />
+
             <span className="text-[#D2DCF7] text-[16px] font-semibold">
               Live Support
             </span>
