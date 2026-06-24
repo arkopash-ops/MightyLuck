@@ -11,6 +11,10 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
   const dispatch = useAppDispatch();
   const user = useAppSelector((s) => s.auth.user);
 
+  const handleSearch = () => {
+    router.push("/search");
+  };
+
   const handleLogin = () => {
     if (window.innerWidth < 768) router.push("/auth/login");
     else onLogin();
@@ -64,19 +68,23 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
           </div>
 
           {/* searchbar */}
-          <div className="relative hidden md:block">
+          <div
+            onClick={handleSearch}
+            className="relative hidden md:block cursor-pointer"
+          >
             <Image
               src="/svg/navbar/search.svg"
               width={16}
               height={15.99}
               alt="search"
-              className="absolute left-5 top-1/2 -translate-y-1/2"
+              className="absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"
             />
-
             <input
+              readOnly
+              onClick={handleSearch}
               type="text"
               placeholder="What are you looking for?"
-              className="w-[280px] h-[40px] rounded-[8px] bg-[#112F82] pl-[46px] pr-5 text-white placeholder:text-[#BBCAF3] text-[14px] font-semibold outline-none"
+              className="w-[280px] h-[40px] rounded-[8px] bg-[#112F82] pl-[46px] pr-5 text-white placeholder:text-[#BBCAF3] text-[14px] font-semibold outline-none cursor-pointer"
             />
           </div>
         </div>

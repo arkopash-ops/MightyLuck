@@ -97,9 +97,9 @@ const casinoItems: MenuItemProp[] = [
 
 const liveCasinoItems: MenuItemProp[] = [
   { icon: "/svg/sidebar/game-console.svg", text: "All Games" },
-  { icon: "/svg/sidebar/rocket.svg", text: "Blackjack" },
-  { icon: "/svg/sidebar/thunder.svg", text: "Baccarat" },
-  { icon: "/svg/sidebar/shiny-star.svg", text: "Live Games" },
+  { icon: "/svg/sidebar/blackjack.svg", text: "Blackjack" },
+  { icon: "/svg/sidebar/baccarat.svg", text: "Baccarat" },
+  { icon: "/svg/sidebar/roulette.svg", text: "Roulette" },
 ];
 
 export default function CasinoDropdown({

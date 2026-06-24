@@ -10,13 +10,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
       <body>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          {children}
+          {modal}
+        </ReduxProvider>
       </body>
     </html>
   );
