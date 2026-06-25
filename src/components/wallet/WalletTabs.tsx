@@ -6,12 +6,9 @@ import DepositModel from "./DepositModel";
 import BonusModel from "./BonusModel";
 import WithdrawModel from "./WithdrawModel";
 import TransactionModel from "./TransactionModel";
+import { WalletTabsProps } from "@/types/wallet";
 
 const tabs: string[] = ["Deposit", "Bonuses", "Withdraw", "Transactions"];
-
-interface WalletTabsProps {
-  setModalHeight: (height: number) => void;
-}
 
 export default function WalletTabs({ setModalHeight }: WalletTabsProps) {
   const [activeTab, setActiveTab] = useState("Deposit");
@@ -21,11 +18,11 @@ export default function WalletTabs({ setModalHeight }: WalletTabsProps) {
       case "Deposit":
         return <DepositModel setModalHeight={setModalHeight} />;
       case "Bonuses":
-        return <BonusModel />;
+        return <BonusModel setModalHeight={setModalHeight} />;
       case "Withdraw":
-        return <WithdrawModel />;
+        return <WithdrawModel setModalHeight={setModalHeight}/>;
       case "Transactions":
-        return <TransactionModel />;
+        return <TransactionModel setModalHeight={setModalHeight}/>;
       default:
         return null;
     }

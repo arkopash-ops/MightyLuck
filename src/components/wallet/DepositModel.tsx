@@ -7,11 +7,8 @@ import ReactCountryFlag from "react-country-flag";
 
 import { countries } from "@/data/country";
 import { bonusOptions, paymentOption } from "@/data/wallet";
+import { DepositModelProps } from "@/types/wallet";
 import { useRouter } from "next/navigation";
-
-interface DepositModelProps {
-  setModalHeight: (height: number) => void;
-}
 
 export default function DepositModel({ setModalHeight }: DepositModelProps) {
   const MIN_USD = 10;
