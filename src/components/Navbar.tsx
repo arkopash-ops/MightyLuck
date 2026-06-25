@@ -15,6 +15,10 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
     router.push("/search");
   };
 
+  const handleWallet = () => {
+    router.push("/wallet");
+  };
+
   const handleLogin = () => {
     if (window.innerWidth < 768) router.push("/auth/login");
     else onLogin();
@@ -101,7 +105,10 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
                   </span>
                 </div>
 
-                <button className="flex h-[40px] px-[16px] gap-[8px] rounded-[8px] bg-[#FFC83D] items-center justify-center">
+                <button
+                  onClick={handleWallet}
+                  className="flex h-[40px] px-[16px] gap-[8px] rounded-[8px] bg-[#FFC83D] items-center justify-center cursor-pointer"
+                >
                   <Image
                     src="/svg/navbar/wallet.svg"
                     width={16}
