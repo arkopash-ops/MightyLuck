@@ -1,3 +1,5 @@
+"use client"
+
 import AuthDesktop from "@/components/auth/AuthDesktop";
 import AuthMobile from "@/components/auth/AuthMobile";
 import { AuthPageProps } from "@/types/auth";

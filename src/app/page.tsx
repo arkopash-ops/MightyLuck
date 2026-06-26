@@ -1,7 +1,7 @@
 "use client"
 
-import GuestLobby from "@/pages/(lobby)/guest/page";
-import UserLobby from "@/pages/(lobby)/user/page";
+import GuestLobby from "@/views/(lobby)/guest/GuestLobby";
+import UserLobby from "@/views/(lobby)/user/UserLobby";
 import { useAppSelector } from "@/redux/hooks";
 
 export default function Home() {

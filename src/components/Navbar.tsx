@@ -1,15 +1,24 @@
 "use client";
 
+import { useState } from "react";
+
 import { NavbarProp } from "@/types/navbar";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logoutUser } from "@/redux/slices/authSlice";
+import { LogOut } from "lucide-react";
 
-export default function Navbar({ onLogin, onJoin }: NavbarProp) {
+export default function Navbar({
+  onLogin,
+  onJoin,
+  onLogoutModalChange,
+}: NavbarProp) {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector((s) => s.auth.user);
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleSearch = () => {
     router.push("/search");
@@ -30,7 +39,19 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
   };
 
   const handleLogout = () => {
+    setShowLogoutModal(true);
+    onLogoutModalChange?.(true);
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
+    onLogoutModalChange?.(false);
+  };
+
+  const confirmLogout = () => {
     dispatch(logoutUser());
+    setShowLogoutModal(false);
+    onLogoutModalChange?.(false);
     router.push("/");
   };
 
@@ -161,6 +182,57 @@ export default function Navbar({ onLogin, onJoin }: NavbarProp) {
                   {user.username.slice(0, 2)}
                 </button>
               </div>
+
+              {showLogoutModal && (
+                <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-end md:items-center justify-center">
+                  <div className="w-full md:w-[400px] rounded-t-[28px] md:rounded-2xl bg-[#0C1F56] border-t md:border border-[#1D4EBC] shadow-[0_-10px_40px_rgba(0,0,0,0.45)] overflow-hidden animate-in slide-in-from-bottom duration-300">
+                    {/* Handle (Mobile) */}
+                    <div className="flex justify-center pt-3 md:hidden">
+                      <div className="w-12 h-1.5 rounded-full bg-[#4F6CC9]" />
+                    </div>
+
+                    <div className="px-6 py-7">
+                      {/* Icon */}
+                      <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#112F82] border border-[#1463FF] shadow-[0_0_30px_rgba(20,99,255,0.35)]">
+                        <LogOut
+                          size={30}
+                          className="text-[#FFC83D]"
+                          strokeWidth={2.5}
+                        />
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="text-center text-[22px] font-bold text-white">
+                        Logout?
+                      </h2>
+
+                      {/* Subtitle */}
+                      <p className="mt-2 text-center text-sm leading-6 text-[#BBCAF3]">
+                        You&apos;re about to sign out of your account.
+                        <br />
+                        You can sign back in anytime.
+                      </p>
+
+                      {/* Buttons */}
+                      <div className="mt-8 flex flex-col gap-3">
+                        <button
+                          onClick={confirmLogout}
+                          className="h-12 rounded-xl bg-[#FFC83D] font-bold text-[#1A1404] transition hover:brightness-105 active:scale-[0.98]"
+                        >
+                          Yes, Logout
+                        </button>
+
+                        <button
+                          onClick={cancelLogout}
+                          className="h-12 rounded-xl border border-[#1D4EBC] bg-[#112F82] font-bold text-white transition hover:bg-[#16398F] active:scale-[0.98]"
+                        >
+                          Stay Logged In
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             <>

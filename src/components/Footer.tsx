@@ -85,7 +85,7 @@ function FooterAccordion({ title, items }: { title: string; items: string[] }) {
 export default function Footer() {
   return (
     <footer className="w-full bg-[#091741]">
-      <div className="max-w-[1136px] mx-auto px-4 md:px-0 flex flex-col gap-[48px] p-[100px]">
+      <div className="max-w-[1136px] mx-auto flex flex-col gap-[48px] py-[60px] md:py-[100px] px-4 md:px-0">
         {/* Top row — desktop */}
         <div className="hidden md:flex justify-between items-start pt-0">
           <div className="flex flex-col gap-4 w-[213px]">
@@ -123,12 +123,12 @@ export default function Footer() {
 
         {/* Mobile top — logo + accordion */}
         <div className="flex md:hidden flex-col gap-4 pt-6">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
             <Image
               src="/svg/footer/logo.svg"
               alt="Mighty Luck"
-              width={100}
-              height={38}
+              width={132}
+              height={50}
             />
             <p className="text-[#D2DCF7] font-manrope font-semibold text-[11px] leading-[15px] tracking-[0.01em]">
               @ 2026 Mighty Luck. All rights reserved.

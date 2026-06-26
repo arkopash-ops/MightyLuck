@@ -39,20 +39,19 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </div>
       </aside>
 
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed top-[50px] left-0 right-0 bottom-[75px] bg-black/50 z-30 md:hidden"
+          onClick={onClose}
+        />
+      )}
+
       {/* MOBILE SIDEBAR */}
       <aside
-        className={`fixed top-[50px] left-0 h-[calc(100vh-50px)] w-[414px]
-        bg-[#0C1F56] z-40 transition-transform duration-300 md:hidden
+        className={`fixed top-[50px] left-0 h-[calc(100vh-125px)] w-[414px] bg-[#0C1F56] z-40 transition-transform duration-300 md:hidden
         ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        {/* Overlay */}
-        {isOpen && (
-          <div
-            className="fixed inset-0 bg-black/50 z-30 md:hidden"
-            onClick={onClose}
-          />
-        )}
-
         <div className="p-4 flex flex-col gap-4 relative z-40">
           <MenuContainer mobile isLoggedIn={isLoggedIn} />
           <CasinoDropdown mobile />

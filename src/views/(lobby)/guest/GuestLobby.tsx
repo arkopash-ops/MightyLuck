@@ -21,7 +21,7 @@ import CollectionsSection from "@/components/guest/lobby/CollectionsSection";
 import SeoSection from "@/components/guest/lobby/SeoSection";
 import CryptoBar from "@/components/guest/lobby/CryptoBar";
 import Footer from "@/components/Footer";
-import AuthPage from "../../(auth)/auth/page";
+import AuthPage from "../../(auth)/auth/AuthPage";
 import BottomNavbar from "@/components/mobile/BottomNavbar";
 
 export default function GuestLobby() {
@@ -40,15 +40,7 @@ export default function GuestLobby() {
   };
 
   useEffect(() => {
-    const overflow = isSidebarOpen ? "hidden" : "";
-
-    document.body.style.overflow = overflow;
-    document.documentElement.style.overflow = overflow;
-
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    };
+    document.body.style.overflow = isSidebarOpen ? "hidden" : "";
   }, [isSidebarOpen]);
 
   return (
@@ -134,7 +126,7 @@ export default function GuestLobby() {
         </div>
 
         <Footer />
-        <BottomNavbar onMenuClick={() => setIsSidebarOpen(true)} />
+        <BottomNavbar onMenuClick={() => setIsSidebarOpen((prev) => !prev)} />
       </main>
 
       {authOpen && (

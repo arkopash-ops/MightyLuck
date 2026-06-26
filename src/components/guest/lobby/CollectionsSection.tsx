@@ -36,7 +36,7 @@ export default function CollectionsSection() {
         {collections.map((col) => (
           <div
             key={col.title}
-            className="flex items-center gap-[7.2px] h-[60px] w-[183px] min-w-[183px] px-[14.4px] pl-[7.2px] rounded-[8px] bg-[#0C1F56] snap-start md:h-[100px] md:min-w-0 md:flex-1 md:w-auto md:px-6 md:pl-3 md:gap-3 md:rounded-[12px]"
+            className="flex items-center gap-[7.2px] h-[60px] w-[183px] min-w-[183px] px-[14.4px] pl-[7.2px] rounded-[8px] bg-[#0C1F56] snap-start md:h-[100px] md:min-w-0 md:flex-1 md:w-auto md:px-6 md:pl-3 md:gap-3 md:rounded-[12px] cursor-pointer"
           >
             {/* Icon */}
             <div className="relative w-[45.6px] h-[45.6px] rounded-[4.8px] bg-[#0E1B3D] overflow-hidden flex items-center justify-center shrink-0 md:w-[76px] md:h-[76px] md:rounded-[8px]">

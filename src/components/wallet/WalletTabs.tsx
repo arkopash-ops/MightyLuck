@@ -20,9 +20,9 @@ export default function WalletTabs({ setModalHeight }: WalletTabsProps) {
       case "Bonuses":
         return <BonusModel setModalHeight={setModalHeight} />;
       case "Withdraw":
-        return <WithdrawModel setModalHeight={setModalHeight}/>;
+        return <WithdrawModel setModalHeight={setModalHeight} />;
       case "Transactions":
-        return <TransactionModel setModalHeight={setModalHeight}/>;
+        return <TransactionModel setModalHeight={setModalHeight} />;
       default:
         return null;
     }

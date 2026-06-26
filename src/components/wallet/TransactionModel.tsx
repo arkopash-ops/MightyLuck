@@ -2,27 +2,7 @@
 
 import { useEffect } from "react";
 import { TransactionModelProps } from "@/types/wallet";
-
-const transactions = [
-  {
-    type: "Deposit",
-    amount: "+$100",
-    status: "Completed",
-    date: "Jun 25, 2026",
-  },
-  {
-    type: "Withdrawal",
-    amount: "-$50",
-    status: "Pending",
-    date: "Jun 24, 2026",
-  },
-  {
-    type: "Bonus",
-    amount: "+$25",
-    status: "Completed",
-    date: "Jun 23, 2026",
-  },
-];
+import { transactions } from "@/data/wallet";
 
 export default function TransactionModel({
   setModalHeight,

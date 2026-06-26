@@ -1,32 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BonusModelProps } from "@/types/wallet";
 import Image from "next/image";
-
-const bonuses = [
-  {
-    title: "150% Reload Bonus + 30 Free Spins",
-    minDeposit: "$30",
-    maxCashout: "40x",
-    maxAmount: "$30",
-    wager: "10x",
-  },
-  {
-    title: "175% Reload Bonus + 30 Free Spins",
-    minDeposit: "$50",
-    maxCashout: "50x",
-    maxAmount: "$80",
-    wager: "15x",
-  },
-  {
-    title: "200% High Roller Bonus",
-    minDeposit: "$100",
-    maxCashout: "60x",
-    maxAmount: "$200",
-    wager: "20x",
-  },
-];
+import { BonusModelProps } from "@/types/wallet";
+import { bonuses } from "@/data/wallet";
 
 export default function BonusModel({ setModalHeight }: BonusModelProps) {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -1,29 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { WithdrawModelProps } from "@/types/wallet";
 import Image from "next/image";
-
-const withdrawMethods = [
-  {
-    id: "crypto",
-    title: "Crypto Wallet",
-    logo: "/svg/wallet/bitcoin.svg",
-    activeLogo: "/svg/wallet/bitcoin-1.svg",
-  },
-  {
-    id: "bank",
-    title: "Bank Transfer",
-    logo: "/svg/wallet/visa.svg",
-    activeLogo: "/svg/wallet/visa-1.svg",
-  },
-  {
-    id: "upi",
-    title: "UPI",
-    logo: "/svg/wallet/scan.svg",
-    activeLogo: "/svg/wallet/scan-1.svg",
-  },
-];
+import { WithdrawModelProps } from "@/types/wallet";
+import { withdrawMethods } from "@/data/wallet";
 
 export default function WithdrawModel({ setModalHeight }: WithdrawModelProps) {
   useEffect(() => {
