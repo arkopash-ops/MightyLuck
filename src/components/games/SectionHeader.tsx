@@ -35,7 +35,7 @@ export default function SectionHeader({
 
       {/* Right Side */}
       <div className="flex items-center gap-[12px] md:gap-[20px]">
-        <button className="text-[#FFBF1F] text-[12px] font-bold tracking-[0.02em]">
+        <button className="text-[#D2DCF7] text-[12px] font-bold tracking-[0.02em]">
           View all
         </button>
 

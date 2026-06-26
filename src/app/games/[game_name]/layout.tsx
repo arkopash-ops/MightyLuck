@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
+
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CryptoBar from "@/components/guest/lobby/CryptoBar";
-import SeoSection from "@/components/guest/lobby/SeoSection";
 import Sidebar from "@/components/guest/sidebar/Sidebar";
 import BottomNavbar from "@/components/mobile/BottomNavbar";
-import Navbar from "@/components/Navbar";
-import { useState } from "react";
+
+import CryptoBar from "@/components/guest/lobby/CryptoBar";
+import SeoSection from "@/components/guest/lobby/SeoSection";
 
 export default function GameLayout({
   children,
@@ -14,10 +16,15 @@ export default function GameLayout({
   children: React.ReactNode;
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   return (
     <>
-      <Navbar onLogin={() => {}} onJoin={() => {}} />
+      <Navbar
+        onLogin={() => {}}
+        onJoin={() => {}}
+        onLogoutModalChange={setLogoutModalOpen}
+      />
 
       <main className="w-full min-h-screen bg-[#091741]">
         <div className="max-w-[1440px] mx-auto">
@@ -47,7 +54,11 @@ export default function GameLayout({
         <Footer />
 
         {/* bottom navbar */}
-        <BottomNavbar onMenuClick={() => setIsSidebarOpen(true)} />
+        {!logoutModalOpen && (
+          <BottomNavbar
+            onMenuClick={() => setIsSidebarOpen((prev: boolean) => !prev)}
+          />
+        )}
       </main>
     </>
   );

@@ -17,7 +17,7 @@ export default function GameProvidersSection() {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="text-[#FFBF1F] text-[12px] font-bold tracking-[0.02em]">
+          <button className="text-[#D2DCF7] text-[12px] font-bold tracking-[0.02em]">
             View all
           </button>
 
