@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import PromotionCard from "./PromotionCard";
 import MenuContainer from "./MenuContainer";
@@ -22,6 +23,18 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             <MenuContainer isLoggedIn={isLoggedIn} />
 
             <CasinoDropdown />
+
+            <Link href="/refer-a-friend" className="w-[200px] h-[44px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[12px]">
+              <Image
+                src="/svg/sidebar/refer.svg"
+                alt="Refer a Friend"
+                width={20}
+                height={20}
+              />
+              <span className="text-[#D2DCF7] text-[14px] font-semibold">
+                Refer a Friend
+              </span>
+            </Link>
 
             <div className="w-[200px] h-[44px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[12px]">
               <Image
@@ -55,6 +68,18 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         <div className="p-4 flex flex-col gap-4 relative z-40">
           <MenuContainer mobile isLoggedIn={isLoggedIn} />
           <CasinoDropdown mobile />
+
+          <Link href="/refer-a-friend" className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]">
+            <Image
+              src="/svg/sidebar/refer.svg"
+              alt="Refer a Friend"
+              width={20}
+              height={20}
+            />
+            <span className="text-[#D2DCF7] text-[16px] font-semibold">
+              Refer a Friend
+            </span>
+          </Link>
 
           <div className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]">
             <Image
