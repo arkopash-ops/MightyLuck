@@ -9,10 +9,12 @@ import Image from "next/image";
 import GameProvidersSection from "@/components/guest/lobby/GameProvidersSection";
 import { popularGames, allGames } from "@/data/games";
 import GameCard from "@/components/games/Gamecard";
+import { useRouter } from "next/navigation";
 
 export default function MobileSearchPage() {
   const [query, setQuery] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (showMenu) {
@@ -42,7 +44,10 @@ export default function MobileSearchPage() {
         onLogoutModalChange={() => {}}
       />
 
-      <Sidebar isOpen={showMenu} onClose={() => setShowMenu(false)} />
+      <Sidebar
+        isOpen={showMenu}
+        onClose={() => setShowMenu(false)}
+      />
 
       <div className="pt-[20px]">
         {/* Search Bar */}

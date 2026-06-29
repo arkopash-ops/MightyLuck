@@ -79,7 +79,8 @@ export default function Navbar({
               width={190}
               height={34.66}
               alt="logo"
-              className="hidden md:block"
+              className="hidden md:block cursor-pointer"
+              onClick={() => router.push("/")}
             />
 
             {/* mobile logo */}
@@ -88,7 +89,8 @@ export default function Navbar({
               width={44}
               height={30}
               alt="logo"
-              className="block md:hidden"
+              className="block md:hidden cursor-pointer"
+              onClick={() => router.push("/")}
             />
           </div>
 

@@ -72,7 +72,17 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           <button
             onClick={() => {
               onClose?.();
-              window.location.href = "/refer-a-friend";
+              setTimeout(() => {
+                const currentPath = window.location.pathname;
+                if (currentPath === "/search") {
+                  window.history.back();
+                  setTimeout(() => {
+                    window.location.href = "/refer-a-friend";
+                  }, 100);
+                } else {
+                  window.location.href = "/refer-a-friend";
+                }
+              }, 300);
             }}
             className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]"
           >

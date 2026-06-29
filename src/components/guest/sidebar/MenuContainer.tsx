@@ -62,15 +62,6 @@ export default function MenuContainer({
         mobile={mobile}
       />
 
-      {/* refer a friend */}
-      <MenuItem
-        icon="/svg/sidebar/refer.svg"
-        text="Refer a Friend"
-        size={14}
-        mobile={mobile}
-        href="/refer-a-friend"
-      />
-
       {isLoggedIn && (
         <>
           {/* recently played */}
