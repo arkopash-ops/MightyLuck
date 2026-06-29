@@ -49,7 +49,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
   };
 
   return (
-    <div className="w-[460px] h-[363px] p-4 bg-[#0C1F56] rounded-2xl flex flex-col gap-4">
+    <div className="w-full max-w-[460px] md:w-[460px] md:h-[363px] p-4 bg-[#0C1F56] rounded-2xl flex flex-col gap-4">
       {/* Promo Code */}
       <div className="flex flex-col gap-2">
         <p className="text-xs font-semibold tracking-[0.02em] text-[#BBCAF3]">
@@ -63,7 +63,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
               placeholder="Promo Code"
               value={promoCode}
               onChange={(e) => setPromoCode(e.target.value)}
-              className="w-full h-10 px-4 pr-10 bg-[#112F82] rounded-lg text-sm font-semibold text-white placeholder:text-[#7795E8] outline-none"
+              className="w-full h-[50px] md:h-10 px-4 pr-10 bg-[#112F82] rounded-lg text-sm font-semibold text-white placeholder:text-[#7795E8] outline-none"
             />
 
             {promoCode.length > 0 && (
@@ -77,7 +77,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
             )}
           </div>
 
-          <button className="w-[100px] h-10 bg-[#FFC83D] rounded-lg text-sm font-bold text-[#1A1404]">
+          <button className="w-[100px] h-[50px] md:h-10 bg-[#FFC83D] rounded-lg text-sm font-bold text-[#1A1404]">
             Join
           </button>
         </div>
@@ -91,14 +91,14 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 
         <div
           ref={containerRef}
-          className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth -mx-4 px-4 md:mx-0 md:px-0"
         >
           {bonuses.map((bonus, index) => (
             <div
               key={index}
-              className="min-w-[300px] p-5 bg-[#112F82] rounded-xl flex flex-col gap-3"
+              className="min-w-[300px] p-5 bg-[#112F82] rounded-xl flex flex-col gap-3 shrink-0"
             >
-              <h3 className="text-sm font-bold text-white">{bonus.title}</h3>
+              <h3 className="text-sm font-bold text-white font-jost tracking-[0.02em] leading-5">{bonus.title}</h3>
 
               <div className="flex flex-col gap-[9px]">
                 <div className="grid grid-cols-2 gap-3">
@@ -113,7 +113,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
               </div>
 
               <button className="h-10 bg-[#FFC83D] rounded-md text-xs font-bold text-[#1A1404]">
-                Join Bonus
+                Join
               </button>
             </div>
           ))}
@@ -129,8 +129,8 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
               onClick={() => goToIndex(i)}
               className={`h-[6px] rounded-full transition-all duration-200 cursor-pointer ${
                 i === activeIndex
-                  ? "w-3 bg-[#BBCAF3]"
-                  : "w-[6px] bg-[#BBCAF3]/50"
+                  ? "w-3 bg-[#D2DCF7]"
+                  : "w-[6px] bg-[#D2DCF7]"
               }`}
             />
           ))}
@@ -143,8 +143,8 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 function InfoItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-[2px]">
-      <span className="text-[10px] text-[#BBCAF3]">{label}</span>
-      <span className="text-sm font-bold text-white">{value}</span>
+      <span className="text-[10px] text-[#BBCAF3] font-medium tracking-[0.02em] leading-[14px]">{label}</span>
+      <span className="text-sm font-bold text-white font-jost tracking-[0.02em] leading-5">{value}</span>
     </div>
   );
 }

@@ -135,9 +135,9 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-4 md:gap-6">
       <div
-        className={`w-[460px] p-4 bg-[#0C1F56] rounded-2xl flex-col relative ${
+        className={`w-full md:w-[460px] p-4 bg-[#0C1F56] rounded-2xl flex-col relative ${
           depositStep === "form" ? "flex" : "hidden"
         }`}
       >
@@ -403,7 +403,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
 
               <div className="flex items-center gap-2">
                 {/* USD */}
-                <div className="flex items-center w-[186px] h-10 px-4 bg-[#112F82] rounded-lg overflow-hidden">
+                <div className="flex items-center flex-1 md:w-[186px] h-10 px-4 bg-[#112F82] rounded-lg overflow-hidden">
                   <div className="flex items-center gap-2 w-full">
                     <Image
                       src="/svg/wallet/dollar.svg"
@@ -438,7 +438,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
                 </button>
 
                 {/* BTC */}
-                <div className="flex items-center w-[186px] h-10 px-4 bg-[#112F82] rounded-lg">
+                <div className="flex items-center flex-1 md:w-[186px] h-10 px-4 bg-[#112F82] rounded-lg">
                   <div className="flex items-center gap-2 w-full">
                     <Image
                       src="/svg/wallet/bitcoin-1.svg"
@@ -463,7 +463,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
                 4. BTC Deposit Address
               </p>
 
-              <div className="flex items-center h-10 px-4 bg-[#112F82] rounded-lg">
+              <div className="flex items-center h-[50px] md:h-10 px-4 bg-[#112F82] rounded-lg">
                 <input
                   type="text"
                   placeholder="bc1q7ndh47hf93rdhuhef873hheufhe447..."
@@ -731,7 +731,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
 
       {/* process */}
       <div
-        className={`w-[460px] bg-[#0C1F56] rounded-2xl px-4 py-5 flex-col gap-4 ${
+        className={`w-full md:w-[460px] bg-[#0C1F56] rounded-2xl px-4 py-5 flex-col gap-4 ${
           depositStep === "processing" ? "flex" : "hidden"
         }`}
       >
@@ -789,12 +789,12 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
       <div
         className={`${
           depositStep === "processing" ? "hidden" : "flex"
-        } flex-col items-center`}
+        } flex-col items-center w-full`}
       >
         {selectedPaymentId === "crypto" && (
           <button
             onClick={() => setDepositStep("processing")}
-            className="w-[300px] h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] font-bold cursor-pointer"
+            className="w-full md:w-[300px] h-[50px] md:h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] md:text-[14px] font-bold cursor-pointer"
           >
             I have completed my deposit
           </button>
@@ -809,7 +809,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
                 setDepositStep("processing");
               }
             }}
-            className="w-[300px] h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] font-bold cursor-pointer"
+            className="w-full md:w-[300px] h-[50px] md:h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] md:text-[14px] font-bold cursor-pointer"
           >
             {cardStep === "address"
               ? "Continue"
@@ -819,7 +819,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
       </div>
 
       <div
-        className={`flex flex-col items-center gap-3
+        className={`flex flex-col items-center gap-3 w-full
         ${
           depositStep === "processing"
             ? "flex items-center justify-center"
@@ -828,7 +828,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
       >
         <button
           onClick={() => router.back()}
-          className="w-[300px] h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] font-bold cursor-pointer"
+          className="w-full md:w-[300px] h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] md:text-[14px] font-bold cursor-pointer"
         >
           Go To Games
         </button>

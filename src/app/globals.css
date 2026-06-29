@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    --font-jost: 'Jost', sans-serif;
+    --font-manrope: 'Manrope', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-jost {
+    font-family: var(--font-jost);
+  }
+  .font-manrope {
+    font-family: var(--font-manrope);
+  }
+}
+
 /* scrollbar */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

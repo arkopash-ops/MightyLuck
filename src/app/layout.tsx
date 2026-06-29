@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import { Jost, Manrope } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "../components/ReduxProvider";
+
+const jost = Jost({ subsets: ["latin"], variable: "--font-jost" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   title: "MightyLuck",
@@ -16,8 +20,8 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body>
+    <html lang="en" className={`h-full antialiased ${jost.variable} ${manrope.variable}`}>
+      <body className="font-manrope">
         <ReduxProvider>
           {children}
           {modal}

@@ -1,11 +1,7 @@
-"use client"
+"use client";
 
-import DepositModal from "@/components/wallet/WalletModel";
+import ResponsiveWalletPage from "@/components/wallet/ResponsiveWalletPage";
 
-export default function DepositPage() {
-  return (
-    <main className="min-h-screen bg-[#0C1F56]">
-      <DepositModal />
-    </main>
-  );
+export default function WalletPage() {
+  return <ResponsiveWalletPage />;
 }

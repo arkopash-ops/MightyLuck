@@ -25,7 +25,11 @@ export default function Navbar({
   };
 
   const handleWallet = () => {
-    router.push("/wallet");
+    if (window.innerWidth < 768) {
+      window.location.href = "/wallet";
+    } else {
+      router.push("/wallet");
+    }
   };
 
   const handleLogin = () => {

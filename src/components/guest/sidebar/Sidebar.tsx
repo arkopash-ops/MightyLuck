@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import PromotionCard from "./PromotionCard";
 import MenuContainer from "./MenuContainer";
 import CasinoDropdown from "./CasinoDropdown";
@@ -10,6 +11,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
   const isLoggedIn = !!useSelector((state: RootState) => state.auth.user);
 
   return (
@@ -72,17 +75,14 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           <button
             onClick={() => {
               onClose?.();
-              setTimeout(() => {
-                const currentPath = window.location.pathname;
-                if (currentPath === "/search") {
-                  window.history.back();
-                  setTimeout(() => {
-                    window.location.href = "/refer-a-friend";
-                  }, 100);
-                } else {
-                  window.location.href = "/refer-a-friend";
-                }
-              }, 300);
+              if (pathname === "/search") {
+                router.back();
+                setTimeout(() => {
+                  router.push("/refer-a-friend");
+                }, 50);
+              } else {
+                router.push("/refer-a-friend");
+              }
             }}
             className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]"
           >
