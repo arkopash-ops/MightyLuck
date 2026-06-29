@@ -9,15 +9,15 @@ const promotions = [
     image: "/image/promotion/lion-with-thunder-orb.png",
   },
   {
-    title: "150% RELOAD BONUS + 50 FREE SPINS",
+    title: "100% Welcome Bonus + 100 Free Spins",
     image: "/image/promotion/777-slot.png",
   },
   {
-    title: "150% RELOAD BONUS + 50 FREE SPINS",
+    title: "Claim Up to ₹25,000 Casino Bonus",
     image: "/image/promotion/lion-with-thunder-orb.png",
   },
   {
-    title: "150% RELOAD BONUS + 50 FREE SPINS",
+    title: "Weekend Reload: 200% Bonus + 75 Free Spins",
     image: "/image/promotion/777-slot.png",
   },
 ];

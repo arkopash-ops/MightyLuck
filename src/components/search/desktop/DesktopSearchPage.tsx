@@ -6,7 +6,7 @@ import Image from "next/image";
 import SearchSidebar from "./SearchSidebar";
 import SearchContent from "./SearchContent";
 
-export default function SearchModalContent() {
+export default function DesktopSearchPage() {
   const router = useRouter();
 
   return (

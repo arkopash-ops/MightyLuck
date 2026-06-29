@@ -7,17 +7,31 @@ const slides = [
   {
     image: "/image/lobby/3d-cartoon-king-character-holding-a-gift-box.png",
     title: "250% WELCOME BONUS!",
-    subtitle: "Get LUCKY with our exclusive",
+    subtitle: (
+      <>
+        Get <span className="text-[#FFD85A] font-bold">LUCKY</span> with our
+        exclusive
+      </>
+    ),
   },
   {
     image: "/image/lobby/3d-cartoon-king-character-holding-a-gift-box.png",
     title: "100 FREE SPINS!",
-    subtitle: "Claim your rewards today",
+    subtitle: (
+      <>
+        Claim your <span className="text-[#FFD85A] font-bold">REWARDS</span>{" "}
+        today
+      </>
+    ),
   },
   {
     image: "/image/lobby/3d-cartoon-king-character-holding-a-gift-box.png",
     title: "UP TO ₹50,000 BONUS",
-    subtitle: "Join and start winning",
+    subtitle: (
+      <>
+        Join and start <span className="text-[#FFD85A] font-bold">WINNING</span>
+      </>
+    ),
   },
 ];
 

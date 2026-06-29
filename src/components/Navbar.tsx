@@ -119,25 +119,28 @@ export default function Navbar({
           {user ? (
             <>
               {/* wallet */}
-              <div className="hidden md:flex items-center gap-[4px]">
-                <div className="flex h-[40px] px-[30px] rounded-[8px] bg-[#112F82] items-center justify-center">
-                  <span className="text-white text-[14px] font-bold tracking-[0.02em]">
+              <div className="flex items-center gap-[4px]">
+                {/* balance (always visible, responsive text size) */}
+                <div className="flex h-[40px] md:h-[40px] px-[20px] md:px-[30px] rounded-[8px] bg-[#112F82] items-center justify-center">
+                  <span className="text-white text-[12px] md:text-[14px] font-bold tracking-[0.02em]">
                     $105.98
                   </span>
                 </div>
 
+                {/* deposit button */}
                 <button
                   onClick={handleWallet}
-                  className="flex h-[40px] px-[16px] gap-[8px] rounded-[8px] bg-[#FFC83D] items-center justify-center cursor-pointer"
+                  className="flex items-center justify-center w-[40px] h-[40px] md:w-auto md:h-[40px] md:px-[16px] rounded-[8px] bg-[#FFC83D]"
                 >
                   <Image
                     src="/svg/navbar/wallet.svg"
                     width={16}
-                    height={14.37}
-                    alt="logo"
+                    height={14}
+                    alt="wallet"
                   />
 
-                  <span className="text-[#1A1404] text-[14px] font-semibold tracking-[0.02em]">
+                  {/* hide text on mobile */}
+                  <span className="hidden md:block text-[#1A1404] text-[14px] font-semibold tracking-[0.02em] ml-[8px]">
                     Deposit
                   </span>
                 </button>

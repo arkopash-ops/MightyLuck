@@ -69,7 +69,13 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           <MenuContainer mobile isLoggedIn={isLoggedIn} />
           <CasinoDropdown mobile />
 
-          <Link href="/refer-a-friend" className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]">
+          <button
+            onClick={() => {
+              onClose?.();
+              window.location.href = "/refer-a-friend";
+            }}
+            className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]"
+          >
             <Image
               src="/svg/sidebar/refer.svg"
               alt="Refer a Friend"
@@ -79,7 +85,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             <span className="text-[#D2DCF7] text-[16px] font-semibold">
               Refer a Friend
             </span>
-          </Link>
+          </button>
 
           <div className="w-[374px] h-[50px] bg-[#112F82] rounded-[8px] px-[10px] flex items-center gap-[8px]">
             <Image

@@ -4,9 +4,9 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import Image from "next/image";
 
-import GameProvidersSection from "../guest/lobby/GameProvidersSection";
+import GameProvidersSection from "../../guest/lobby/GameProvidersSection";
 import { allGames, popularGames } from "@/data/games";
-import GameCard from "../games/Gamecard";
+import GameCard from "../../games/Gamecard";
 
 export default function SearchContent() {
   const [query, setQuery] = useState("");
@@ -30,7 +30,7 @@ export default function SearchContent() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="What are you looking for?"
+            placeholder="Start typing a game name"
             className="flex-1 bg-transparent outline-none text-white text-[14px] font-bold placeholder:text-white"
           />
         </div>
@@ -53,9 +53,16 @@ export default function SearchContent() {
                 All Games
               </h2>
               <div className="max-h-[420px] overflow-y-auto pr-2 scrollbar-hide">
-                <div className="flex flex-wrap gap-3">
+                <div className="grid grid-cols-5 gap-3">
                   {filteredGames.map((game) => (
-                    <GameCard key={game.globalId} image={game.image} title={game.title} onNavigate={(t) => { window.location.href = `/games/${t}`; }} />
+                    <GameCard
+                      key={game.globalId}
+                      image={game.image}
+                      title={game.title}
+                      onNavigate={(t) => {
+                        window.location.href = `/games/${t}`;
+                      }}
+                    />
                   ))}
                 </div>
               </div>
@@ -78,14 +85,26 @@ export default function SearchContent() {
           {/* Popular Games */}
           <div className="flex flex-col mt-10 gap-5 mb-8">
             <div className="flex items-center gap-2">
-              <Image src="/svg/search/fire.svg" alt="popular_games" width={15.86} height={20} />
+              <Image
+                src="/svg/search/fire.svg"
+                alt="popular_games"
+                width={15.86}
+                height={20}
+              />
               <h2 className="text-white text-[20px] font-bold uppercase">
                 Popular Games
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
               {popularGames.map((game, index) => (
-                <GameCard key={`${game.id}-${index}`} image={game.image} title={game.title} onNavigate={(t) => { window.location.href = `/games/${t}`; }} />
+                <GameCard
+                  key={`${game.id}-${index}`}
+                  image={game.image}
+                  title={game.title}
+                  onNavigate={(t) => {
+                    window.location.href = `/games/${t}`;
+                  }}
+                />
               ))}
             </div>
           </div>
