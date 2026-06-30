@@ -78,27 +78,6 @@ export const bonuses: Bonus[] = [
   },
 ];
 
-export const withdrawMethods = [
-  {
-    id: "crypto",
-    title: "Crypto Wallet",
-    logo: "/svg/wallet/bitcoin.svg",
-    activeLogo: "/svg/wallet/bitcoin-1.svg",
-  },
-  {
-    id: "bank",
-    title: "Bank Transfer",
-    logo: "/svg/wallet/visa.svg",
-    activeLogo: "/svg/wallet/visa-1.svg",
-  },
-  {
-    id: "upi",
-    title: "UPI",
-    logo: "/svg/wallet/scan.svg",
-    activeLogo: "/svg/wallet/scan-1.svg",
-  },
-];
-
 export const transactions = [
   {
     type: "Deposit",
