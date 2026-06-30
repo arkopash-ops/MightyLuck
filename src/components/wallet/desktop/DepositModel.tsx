@@ -10,6 +10,10 @@ import { bonusOptions, paymentOption } from "@/data/wallet";
 import { DepositModelProps } from "@/types/wallet";
 import { useRouter } from "next/navigation";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveBonus } from "@/redux/slices/bonusSlice";
+import { RootState } from "@/redux/store";
+
 export default function DepositModel({ setModalHeight }: DepositModelProps) {
   const MIN_USD = 10;
   const MAX_USD = 1000000;
@@ -21,9 +25,10 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
 
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
   // bonus dropdown
   const [openBonus, setOpenBonus] = useState(false);
-  const [selectedBonusId, setSelectedBonusId] = useState(bonusOptions[0].id);
 
   // payment dropdown
   const [openPayment, setOpenPayment] = useState(false);
@@ -35,7 +40,9 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
   const [cardStep, setCardStep] = useState<"address" | "payment">("address");
 
   // deposit step
-  const [depositStep, setDepositStep] = useState<"form" | "processing">("form");
+  const [depositStep, setDepositStep] = useState<
+    "form" | "processing" | "success"
+  >("form");
 
   // select payment amount
   const [selectedAmount, setSelectedAmount] = useState<number>(30);
@@ -51,6 +58,8 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
   useEffect(() => {
     if (depositStep === "processing") {
       setModalHeight(532);
+    } else if (depositStep === "success") {
+      setModalHeight(660);
     } else if (selectedPaymentId === "card" && cardStep === "payment") {
       setModalHeight(647);
     } else {
@@ -58,11 +67,19 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
     }
   }, [depositStep, selectedPaymentId, cardStep, setModalHeight]);
 
-  const selectedBonus = bonusOptions.find((o) => o.id === selectedBonusId)!;
-
   const selectedPayment = paymentOption.find(
     (o) => o.id === selectedPaymentId,
   )!;
+
+  const activeBonus = useSelector(
+    (state: RootState) => state.bonus.activeBonus,
+  );
+
+  useEffect(() => {
+    if (!activeBonus) {
+      dispatch(setActiveBonus(bonusOptions[0]));
+    }
+  }, [activeBonus, dispatch]);
 
   const usdToBtc = (usd: number): number => {
     const BTC_PER_USD = 0.000016;
@@ -159,14 +176,14 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
           >
             <div className="flex items-center gap-3 min-w-0 flex-1">
               <Image
-                src={selectedBonus.activeLogo}
-                alt={selectedBonus.title}
+                src={activeBonus?.activeLogo ?? bonusOptions[0].activeLogo}
+                alt={activeBonus?.title ?? "Bonus"}
                 width={16}
                 height={16}
               />
 
               <span className="truncate text-[14px] font-bold text-white leading-[19px] tracking-[0.02em]">
-                {selectedBonus.title}
+                {activeBonus?.title ?? bonusOptions[0].title}
               </span>
             </div>
 
@@ -193,7 +210,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
 
               {/* OPTIONS */}
               {bonusOptions.map((item, index) => {
-                const isActive = selectedBonusId === item.id;
+                const isActive = activeBonus?.id === item.id;
 
                 const isLast = index === bonusOptions.length - 1;
 
@@ -201,7 +218,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
                   <button
                     key={item.id}
                     onClick={() => {
-                      setSelectedBonusId(item.id);
+                      dispatch(setActiveBonus(item));
                       setOpenBonus(false);
                     }}
                     className={`flex items-center justify-start gap-3 px-4 py-[10px] h-[52px] w-full text-left transition cursor-pointer
@@ -729,6 +746,120 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
         )}
       </div>
 
+      {/* Card Deposit Success */}
+      <div
+        className={`w-full md:w-[460px] bg-[#0C1F56] rounded-2xl p-4 flex-col gap-4 ${
+          depositStep === "success" ? "flex" : "hidden"
+        }`}
+      >
+        {/* Success Icon */}
+        <div className="w-full flex justify-center items-center h-[120px]">
+          <div className="relative w-[120px] h-[120px] flex items-center justify-center">
+            {/* Outer Circle */}
+            <div className="absolute inset-0 rounded-full border-[3px] border-[#1463FF]" />
+
+            {/* Inner Circle */}
+            <div className="w-[70px] h-[70px] rounded-full bg-[#1463FF] flex items-center justify-center">
+              <Image
+                src="/svg/wallet/check.svg"
+                alt="success"
+                width={24.25}
+                height={18.4}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Heading */}
+        <div className="flex flex-col items-center gap-2">
+          <h2 className="text-[20px] font-bold tracking-[0.02em] text-white text-center">
+            Deposit Successful
+          </h2>
+
+          <p className="text-center text-[12px] leading-4 font-medium tracking-[0.02em] text-[#A5B8EF]">
+            Your credit card deposit was approved and your balance has been
+            updated.
+          </p>
+        </div>
+
+        {/* Transaction Details */}
+        <div className="flex flex-col gap-3">
+          <div className="bg-[#112F82] rounded-lg px-4 py-[10px] flex flex-col gap-2">
+            {/* Amount */}
+            <div className="flex justify-between items-center">
+              <span className="text-[10px] font-semibold text-[#A5B8EF]">
+                Amount
+              </span>
+
+              <span className="text-[12px] font-bold text-white">
+                $
+                {selectedAmount === 0
+                  ? customAmount || "0.00"
+                  : `${selectedAmount}.00`}
+              </span>
+            </div>
+
+            <div className="border-t border-dashed border-[#193EA5]" />
+
+            {/* Payment Method */}
+            <div className="flex justify-between items-center">
+              <span className="text-[10px] font-semibold text-[#A5B8EF]">
+                Payment Method
+              </span>
+
+              <span className="text-[12px] font-bold text-white">
+                Credit Card
+              </span>
+            </div>
+
+            <div className="border-t border-dashed border-[#193EA5]" />
+
+            {/* Status */}
+            <div className="flex justify-between items-center">
+              <span className="text-[10px] font-semibold text-[#A5B8EF]">
+                Status
+              </span>
+
+              <span className="text-[12px] font-bold text-white">
+                Completed
+              </span>
+            </div>
+          </div>
+
+          {/* Active Bonus */}
+          <div className="bg-[#112F82] rounded-lg px-4 py-[10px] flex flex-col gap-2">
+            <span className="text-[12px] text-[#BBCAF3]">Active Bonus</span>
+
+            <div className="flex items-center gap-2">
+              <Image
+                src={activeBonus?.activeLogo ?? "/svg/wallet/gift-1.svg"}
+                alt={activeBonus?.title ?? "Bonus"}
+                width={16}
+                height={16}
+              />
+
+              <div className="flex flex-col">
+                <span className="text-[14px] font-bold tracking-[0.02em] text-white">
+                  {activeBonus?.title}
+                </span>
+
+                <span className="text-[10px] font-bold tracking-[0.02em] text-[#A5B8EF]">
+                  {activeBonus?.subtitle}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Play Button */}
+        <button
+          onClick={() => router.back()}
+          className="w-full h-[50px] rounded-lg bg-[#FFC83D] text-[#1A1404] text-[14px] font-bold cursor-pointer"
+        >
+          Play Now
+        </button>
+      </div>
+
       {/* process */}
       <div
         className={`w-full md:w-[460px] bg-[#0C1F56] rounded-2xl px-4 py-5 flex-col gap-4 ${
@@ -788,7 +919,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
       {/* Button */}
       <div
         className={`${
-          depositStep === "processing" ? "hidden" : "flex"
+          depositStep === "form" ? "flex" : "hidden"
         } flex-col items-center w-full`}
       >
         {selectedPaymentId === "crypto" && (
@@ -806,7 +937,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
               if (cardStep === "address") {
                 setCardStep("payment");
               } else {
-                setDepositStep("processing");
+                setDepositStep("success");
               }
             }}
             className="w-full md:w-[300px] h-[50px] md:h-[50px] bg-[#FFC83D] rounded-lg text-[#1A1404] text-[14px] md:text-[14px] font-bold cursor-pointer"

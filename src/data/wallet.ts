@@ -1,4 +1,6 @@
-export const bonusOptions = [
+import { Bonus } from "@/types/bonus";
+
+export const bonusOptions: Bonus[] = [
   {
     id: "reload",
     title: "150% Reload Bonus + 30 Free Spins",
