@@ -11,7 +11,7 @@ import { DepositModelProps } from "@/types/wallet";
 import { useRouter } from "next/navigation";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveBonus } from "@/redux/slices/bonusSlice";
+import { setActiveBonus } from "@/redux/slices/wallet/depositSlice";
 import { RootState } from "@/redux/store";
 
 export default function DepositModel({ setModalHeight }: DepositModelProps) {
@@ -72,7 +72,7 @@ export default function DepositModel({ setModalHeight }: DepositModelProps) {
   )!;
 
   const activeBonus = useSelector(
-    (state: RootState) => state.bonus.activeBonus,
+    (state: RootState) => state.deposit.activeBonus,
   );
 
   useEffect(() => {

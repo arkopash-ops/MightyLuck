@@ -1,19 +1,19 @@
-import { Bonus } from "@/types/bonus";
+import { DepositBonus } from "@/types/bonus";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface bonusState {
-    activeBonus: Bonus | null;
+    activeBonus: DepositBonus | null;
 }
 
 const initialState: bonusState = {
     activeBonus: null,
 };
 
-const bonusSlice = createSlice({
-    name: "bonus",
+const depositSlice = createSlice({
+    name: "deposit",
     initialState,
     reducers: {
-        setActiveBonus(state, action: PayloadAction<Bonus>) {
+        setActiveBonus(state, action: PayloadAction<DepositBonus>) {
             state.activeBonus = action.payload;
         },
 
@@ -23,5 +23,5 @@ const bonusSlice = createSlice({
     },
 });
 
-export const { setActiveBonus, clearActiveBonus } = bonusSlice.actions;
-export default bonusSlice.reducer;
+export const { setActiveBonus, clearActiveBonus } = depositSlice.actions;
+export default depositSlice.reducer;

@@ -1,6 +1,6 @@
-import { Bonus } from "@/types/bonus";
+import { Bonus, DepositBonus } from "@/types/bonus";
 
-export const bonusOptions: Bonus[] = [
+export const bonusOptions: DepositBonus[] = [
   {
     id: "reload",
     title: "150% Reload Bonus + 30 Free Spins",
@@ -48,8 +48,10 @@ export const paymentOption = [
   },
 ];
 
-export const bonuses = [
+export const bonuses: Bonus[] = [
   {
+    id: 1,
+    code: "PROMO2026",
     title: "150% Reload Bonus + 30 Free Spins",
     minDeposit: "$30",
     maxCashout: "40x",
@@ -57,6 +59,8 @@ export const bonuses = [
     wager: "10x",
   },
   {
+    id: 2,
+    code: "RELOAD175",
     title: "175% Reload Bonus + 30 Free Spins",
     minDeposit: "$50",
     maxCashout: "50x",
@@ -64,6 +68,8 @@ export const bonuses = [
     wager: "15x",
   },
   {
+    id: 3,
+    code: "HIGH200",
     title: "200% High Roller Bonus",
     minDeposit: "$100",
     maxCashout: "60x",

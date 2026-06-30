@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/authSlice";
-import bonusReducer from "./slices/bonusSlice";
+import dpositReducer from "./slices/wallet/depositSlice";
+import bonusReducer from "./slices/wallet/bonusSlice";
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
+        deposit: dpositReducer,
         bonus: bonusReducer,
     }
 });

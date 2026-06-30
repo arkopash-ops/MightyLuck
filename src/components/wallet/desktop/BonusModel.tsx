@@ -4,10 +4,23 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { BonusModelProps } from "@/types/wallet";
 import { bonuses } from "@/data/wallet";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/redux/hooks";
+import {
+  clearActiveBonus,
+  setActiveBonus,
+} from "@/redux/slices/wallet/bonusSlice";
+import { useRouter } from "next/navigation";
 
 export default function BonusModel({ setModalHeight }: BonusModelProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isClient = useRef(false);
+
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const activeBonus = useAppSelector((state) => state.bonus.activeBonus);
 
   const [promoCode, setPromoCode] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -16,8 +29,11 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 
   useEffect(() => {
     isClient.current = true;
-    setModalHeight(518);
-  }, [setModalHeight]);
+  }, []);
+
+  useEffect(() => {
+    setModalHeight(activeBonus ? 589 : 518);
+  }, [activeBonus, setModalHeight]);
 
   const handleScroll = () => {
     if (!isClient.current || !containerRef.current) return;
@@ -37,6 +53,12 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearActiveBonus());
+    };
+  }, [dispatch]);
+
   const goToIndex = (index: number) => {
     if (!containerRef.current) return;
 
@@ -47,6 +69,120 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
       behavior: "smooth",
     });
   };
+
+  const handlePromoJoin = () => {
+    dispatch(
+      setActiveBonus({
+        id: 0,
+        code: promoCode,
+        title: "Promo Bonus",
+        minDeposit: "$30",
+        maxCashout: "40x",
+        maxAmount: "$30",
+        wager: "10x",
+      }),
+    );
+  };
+
+  if (activeBonus) {
+    return (
+      <div className="w-full max-w-[460px] p-4 bg-[#0C1F56] rounded-2xl flex flex-col gap-4">
+        <div className="bg-[#112F82] rounded-xl p-4 flex flex-col gap-5">
+          {/* Coupon Applied */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-[#1463FF] flex items-center justify-center">
+              <Image
+                src="/svg/wallet/check.svg"
+                alt="check"
+                width={16}
+                height={16}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <h3 className="text-sm font-bold text-white">Coupon Applied</h3>
+
+              <p className="text-xs text-[#A5B8EF]">
+                Your bonus is now attached to your next deposit.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-medium text-[#BBCAF3]">
+              Active Bonus
+            </span>
+
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-white">
+                {activeBonus.title}
+              </h3>
+
+              <Image
+                src="/svg/wallet/info.svg"
+                alt="info"
+                width={16}
+                height={16}
+              />
+            </div>
+
+            <span className="text-sm font-bold text-[#FFC83D] uppercase">
+              {activeBonus.code}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-semibold text-[#A5B8EF]">
+                Min. Deposit
+              </span>
+
+              <span className="text-xs font-bold text-white">
+                {activeBonus.minDeposit}
+              </span>
+            </div>
+
+            <div className="border-t border-dashed border-[#193EA5]" />
+
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-semibold text-[#A5B8EF]">
+                Max. Cashout
+              </span>
+
+              <span className="text-xs font-bold text-white">
+                {activeBonus.maxCashout}
+              </span>
+            </div>
+
+            <div className="border-t border-dashed border-[#193EA5]" />
+
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-semibold text-[#A5B8EF]">
+                Wager
+              </span>
+
+              <span className="text-xs font-bold text-white">
+                {activeBonus.wager}
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={() => router.back()}
+            className="h-[50px] rounded-lg bg-[#FFC83D] text-base font-bold text-[#1A1404]"
+          >
+            Continue to deposit
+          </button>
+        </div>
+
+        <button
+          onClick={() => dispatch(clearActiveBonus())}
+          className="h-[50px] rounded-lg bg-[#112F82] text-[#D2DCF7] font-bold"
+        >
+          Change Coupon
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-[460px] md:w-[460px] md:h-[363px] p-4 bg-[#0C1F56] rounded-2xl flex flex-col gap-4">
@@ -63,7 +199,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
               placeholder="Promo Code"
               value={promoCode}
               onChange={(e) => setPromoCode(e.target.value)}
-              className="w-full h-[50px] md:h-10 px-4 pr-10 bg-[#112F82] rounded-lg text-sm font-semibold text-white placeholder:text-[#7795E8] outline-none"
+              className="w-full h-[50px] md:h-10 px-4 pr-10 bg-[#112F82] rounded-lg text-sm font-semibold text-white placeholder:text-[#7795E8] outline-none uppercase"
             />
 
             {promoCode.length > 0 && (
@@ -77,7 +213,10 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
             )}
           </div>
 
-          <button className="w-[100px] h-[50px] md:h-10 bg-[#FFC83D] rounded-lg text-sm font-bold text-[#1A1404]">
+          <button
+            onClick={handlePromoJoin}
+            className="w-[100px] h-[50px] md:h-10 bg-[#FFC83D] rounded-lg text-sm font-bold text-[#1A1404]"
+          >
             Join
           </button>
         </div>
@@ -98,7 +237,9 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
               key={index}
               className="min-w-[300px] p-5 bg-[#112F82] rounded-xl flex flex-col gap-3 shrink-0"
             >
-              <h3 className="text-sm font-bold text-white font-jost tracking-[0.02em] leading-5">{bonus.title}</h3>
+              <h3 className="text-sm font-bold text-white font-jost tracking-[0.02em] leading-5">
+                {bonus.title}
+              </h3>
 
               <div className="flex flex-col gap-[9px]">
                 <div className="grid grid-cols-2 gap-3">
@@ -112,7 +253,10 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
                 </div>
               </div>
 
-              <button className="h-10 bg-[#FFC83D] rounded-md text-xs font-bold text-[#1A1404]">
+              <button
+                onClick={() => dispatch(setActiveBonus(bonus))}
+                className="h-10 bg-[#FFC83D] rounded-md text-xs font-bold text-[#1A1404]"
+              >
                 Join
               </button>
             </div>
@@ -128,9 +272,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
               key={i}
               onClick={() => goToIndex(i)}
               className={`h-[6px] rounded-full transition-all duration-200 cursor-pointer ${
-                i === activeIndex
-                  ? "w-3 bg-[#D2DCF7]"
-                  : "w-[6px] bg-[#D2DCF7]"
+                i === activeIndex ? "w-3 bg-[#D2DCF7]" : "w-[6px] bg-[#D2DCF7]"
               }`}
             />
           ))}
@@ -143,8 +285,12 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 function InfoItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-[2px]">
-      <span className="text-[10px] text-[#BBCAF3] font-medium tracking-[0.02em] leading-[14px]">{label}</span>
-      <span className="text-sm font-bold text-white font-jost tracking-[0.02em] leading-5">{value}</span>
+      <span className="text-[10px] text-[#BBCAF3] font-medium tracking-[0.02em] leading-[14px]">
+        {label}
+      </span>
+      <span className="text-sm font-bold text-white font-jost tracking-[0.02em] leading-5">
+        {value}
+      </span>
     </div>
   );
 }
