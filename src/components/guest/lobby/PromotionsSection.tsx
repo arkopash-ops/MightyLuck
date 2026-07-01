@@ -125,7 +125,7 @@ export default function PromotionsSection() {
                     {item.title}
                   </h3>
 
-                  <button className="w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] flex items-center justify-center cursor-pointer">
+                  <button className="w-[110px] h-[40px] bg-[#FFC83D] hover:bg-[#F4B400] rounded-[8px] flex items-center justify-center cursor-pointer">
                     <span className="text-[#1A1404] font-manrope font-bold text-[14px]">
                       Join
                     </span>

@@ -18,14 +18,7 @@ export default function CategoryTabs({ active, onSelect }: CategoryTabsProps) {
             <button
               key={item.id}
               onClick={() => onSelect(item.id)}
-              className={`
-                flex flex-row items-center justify-center
-                gap-[6.4px] md:gap-[8px]
-                w-[106.6px] md:w-[135px]
-                h-[40px] md:h-[50px]
-                px-[12.8px] md:px-[16px]
-                py-[8px] md:py-[10px]
-                rounded-[6px] flex-none transition-none
+              className={`flex flex-row items-center justify-center gap-[6.4px] md:gap-[8px] w-[106.6px] md:w-[135px] h-[40px] md:h-[50px] px-[12.8px] md:px-[16px] py-[8px] md:py-[10px] rounded-[6px] flex-none cursor-pointer transform transition-transform duration-200 ease-out hover:scale-105
                 ${isActive ? "bg-[#1463FF]" : "bg-[#0C1F56]"}
               `}
             >
@@ -39,11 +32,7 @@ export default function CategoryTabs({ active, onSelect }: CategoryTabsProps) {
                 />
               </div>
               <span
-                className={`
-                  font-manrope whitespace-nowrap
-                  text-[10px] md:text-[12px]
-                  leading-[16px] md:leading-[19px]
-                  tracking-[0.02em]
+                className={`font-manrope whitespace-nowrap text-[10px] md:text-[12px] leading-[16px] md:leading-[19px] tracking-[0.02em]
                   ${isActive ? "font-bold text-white" : "font-semibold text-[#D2DCF7]"}
                 `}
               >

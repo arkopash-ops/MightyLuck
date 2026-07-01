@@ -1,15 +1,33 @@
 import Image from "next/image";
 import ProviderCard from "./ProviderCard";
 import { providers } from "@/data/providers";
+import { useRef } from "react";
 
 export default function GameProvidersSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -500 : 500,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="w-full flex flex-col gap-5">
       {/* Header */}
 
       <div className="flex items-center justify-between h-auto md:h-[30px]">
         <div className="flex items-center gap-2 md:gap-3">
-          <Image src="/svg/game/joystick.svg" alt="icon" width={18} height={18} className="md:w-[30px] md:h-[30px]" />
+          <Image
+            src="/svg/game/joystick.svg"
+            alt="icon"
+            width={18}
+            height={18}
+            className="md:w-[30px] md:h-[30px]"
+          />
 
           <h2 className="text-white font-jost font-extrabold text-[16px] md:text-[20px] tracking-[0.01em] uppercase">
             GAME PROVIDERS (34)
@@ -23,7 +41,10 @@ export default function GameProvidersSection() {
 
           <div className="hidden md:flex gap-2">
             {/* Previous */}
-            <button className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity">
+            <button
+              onClick={() => scroll("left")}
+              className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity"
+            >
               <Image
                 src="/svg/game/left.svg"
                 alt="Previous"
@@ -33,7 +54,10 @@ export default function GameProvidersSection() {
             </button>
 
             {/* Next */}
-            <button className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity">
+            <button
+              onClick={() => scroll("right")}
+              className="w-[30px] h-[30px] rounded-[4px] bg-[#112F82] opacity-40 flex items-center justify-center hover:opacity-100 transition-opacity"
+            >
               <Image
                 src="/svg/game/right.svg"
                 alt="Next"
@@ -47,7 +71,11 @@ export default function GameProvidersSection() {
 
       {/* Providers */}
 
-      <div className="flex gap-3 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+      <div
+        ref={scrollRef}
+        className="flex gap-3 overflow-x-auto pb-1"
+        style={{ scrollbarWidth: "none" }}
+      >
         {providers.map((provider, index) => (
           <ProviderCard
             key={index}

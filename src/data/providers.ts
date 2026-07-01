@@ -26,5 +26,9 @@ export const providers = [
     {
         "logo": "/image/provider/booming-games.png",
         "games": 226,
+    },
+    {
+        "logo": "/image/provider/yggdrasil.png",
+        "games": 226,
     }
 ];

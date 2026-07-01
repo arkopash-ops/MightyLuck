@@ -150,7 +150,7 @@ export default function ReferHeroBanner() {
                           className="w-full bg-transparent outline-none text-white placeholder:text-[#7795E8] font-semibold text-[14px] leading-[19px]"
                         />
                       </div>
-                      <button className="w-[122px] h-[40px] bg-[#FFC83D] rounded-[8px] text-[#1A1404] font-bold text-[14px] leading-[19px] cursor-pointer">
+                      <button className="w-[122px] h-[40px] bg-[#FFC83D] hover:bg-[#F4B400] rounded-[8px] text-[#1A1404] font-bold text-[14px] leading-[19px] cursor-pointer">
                         Send Invite
                       </button>
                     </div>

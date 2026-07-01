@@ -33,7 +33,7 @@ export default function HeroBanner() {
           </h1>
         </div>
 
-        <button className="w-[95px] md:w-[110px] h-[34px] md:h-[40px] rounded-[6px] md:rounded-[8px] bg-[#FFBF1F] text-[#1A1404] font-manrope font-bold text-[12px] md:text-[14px] leading-[17px] md:leading-[19px] tracking-[0.02em]">
+        <button className="w-[95px] md:w-[110px] h-[34px] md:h-[40px] rounded-[6px] md:rounded-[8px] bg-[#FFBF1F] hover:bg-[#F4B400] text-[#1A1404] font-manrope font-bold text-[12px] md:text-[14px] leading-[17px] md:leading-[19px] tracking-[0.02em] cursor-pointer">
           Join Now
         </button>
       </div>

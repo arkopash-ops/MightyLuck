@@ -168,7 +168,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 
           <button
             onClick={() => router.back()}
-            className="h-[50px] rounded-lg bg-[#FFC83D] text-base font-bold text-[#1A1404]"
+            className="h-[50px] rounded-lg bg-[#FFC83D] hover:bg-[#F4B400] text-base font-bold text-[#1A1404] cursor-pointer"
           >
             Continue to deposit
           </button>
@@ -176,7 +176,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 
         <button
           onClick={() => dispatch(clearActiveBonus())}
-          className="h-[50px] rounded-lg bg-[#112F82] text-[#D2DCF7] font-bold"
+          className="h-[50px] rounded-lg bg-[#112F82] hover:bg-[#173EAD] text-[#D2DCF7] font-bold cursor-pointer"
         >
           Change Coupon
         </button>
@@ -215,7 +215,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 
           <button
             onClick={handlePromoJoin}
-            className="w-[100px] h-[50px] md:h-10 bg-[#FFC83D] rounded-lg text-sm font-bold text-[#1A1404]"
+            className="w-[100px] h-[50px] md:h-10 bg-[#FFC83D] hover:bg-[#F4B400] rounded-lg text-sm font-bold text-[#1A1404] cursor-pointer"
           >
             Join
           </button>
@@ -255,7 +255,7 @@ export default function BonusModel({ setModalHeight }: BonusModelProps) {
 
               <button
                 onClick={() => dispatch(setActiveBonus(bonus))}
-                className="h-10 bg-[#FFC83D] rounded-md text-xs font-bold text-[#1A1404]"
+                className="h-10 bg-[#FFC83D] hover:bg-[#F4B400] rounded-md text-xs font-bold text-[#1A1404] cursor-pointer"
               >
                 Join
               </button>

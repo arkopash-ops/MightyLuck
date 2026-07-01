@@ -136,7 +136,7 @@ export default function Navbar({
                 {/* deposit button */}
                 <button
                   onClick={handleWallet}
-                  className="flex items-center justify-center w-[40px] h-[40px] md:w-auto md:h-[40px] md:px-[16px] rounded-[8px] bg-[#FFC83D]"
+                  className="flex items-center justify-center w-[40px] h-[40px] md:w-auto md:h-[40px] md:px-[16px] rounded-[8px] bg-[#FFC83D] hover:bg-[#F4B400] cursor-pointer"
                 >
                   <Image
                     src="/svg/navbar/wallet.svg"

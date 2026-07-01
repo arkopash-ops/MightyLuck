@@ -92,7 +92,7 @@ export default function HeroCarousel() {
                   </h1>
                 </div>
 
-                <button className="flex items-center justify-center w-[90px] sm:w-[100px] md:w-[110px] h-[32px] sm:h-[36px] md:h-[40px] rounded-[6px] md:rounded-[8px] bg-[#FFBF1F] text-[#1A1404] font-manrope font-bold text-[11px] sm:text-[13px] md:text-[14px] tracking-[0.02em]">
+                <button className="flex items-center justify-center w-[90px] sm:w-[100px] md:w-[110px] h-[32px] sm:h-[36px] md:h-[40px] rounded-[6px] md:rounded-[8px] bg-[#FFBF1F] hover:bg-[#F4B400] text-[#1A1404] font-manrope font-bold text-[11px] sm:text-[13px] md:text-[14px] tracking-[0.02em] cursor-pointer">
                   Join Now
                 </button>
               </div>
