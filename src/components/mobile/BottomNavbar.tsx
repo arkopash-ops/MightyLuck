@@ -34,7 +34,9 @@ export default function BottomNavbar({ onMenuClick }: Props) {
           </button>
 
           {bottomNavItems.map((item) => {
-            const isActive = pathname.includes(item.label.toLowerCase());
+            const isActive = item.label === "Tourneys"
+              ? pathname.includes("tournament")
+              : pathname.includes(item.label.toLowerCase());
             return (
               <button
                 key={item.label}

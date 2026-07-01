@@ -44,6 +44,7 @@ export default function MenuContainer({
         text="Promotions"
         size={16}
         mobile={mobile}
+        href="/offers"
       />
 
       {/* vip programs */}
@@ -52,6 +53,7 @@ export default function MenuContainer({
         text="VIP Programs"
         size={14}
         mobile={mobile}
+        href="/vip"
       />
 
       {/* tournaments */}
@@ -60,6 +62,7 @@ export default function MenuContainer({
         text="Tournaments"
         size={14}
         mobile={mobile}
+        href="/tournaments"
       />
 
       {isLoggedIn && (
