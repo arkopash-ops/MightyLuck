@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import DepositModel from "./desktop/DepositModel";
-import BonusModel from "./desktop/BonusModel";
-import WithdrawModel from "./desktop/WithdrawModel";
-import TransactionModel from "./desktop/TransactionModel";
+import DepositModel from "./modals/DepositModel";
+import BonusModel from "./modals/BonusModel";
+import WithdrawModel from "./modals/WithdrawModel";
+import TransactionModel from "./modals/TransactionModel";
 import { WalletTabsProps } from "@/types/wallet";
 
 const tabs: string[] = ["Deposit", "Bonuses", "Withdraw", "Transactions"];

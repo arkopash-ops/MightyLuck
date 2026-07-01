@@ -2,8 +2,8 @@
 
 @layer base {
   :root {
-    --font-jost: 'Jost', sans-serif;
-    --font-manrope: 'Manrope', sans-serif;
+    --font-jost: "Jost", sans-serif;
+    --font-manrope: "Manrope", sans-serif;
   }
 }
 
@@ -14,6 +14,37 @@
   .font-manrope {
     font-family: var(--font-manrope);
   }
+}
+
+/* custom scrollbar */
+.custom-scrollbar {
+  scrollbar-color: #1463ff #d2dcf7;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #d2dcf7;
+  border-radius: 100px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1463ff;
+  border-radius: 100px;
+}
+
+/* Hide the scrollbar buttons (arrows) */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Optional: remove corner when both scrollbars appear */
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 /* scrollbar */
